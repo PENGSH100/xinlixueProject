@@ -27,5 +27,7 @@ public class XinLinXueMapperTest {
     public void getAll() {
         System.out.println(xinLinXueMapper);
         List<Map> allMap=xinLinXueMapper.getAll();
+
+        System.out.println(allMap.size());
     }
 }
