@@ -4,6 +4,7 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.xinlixue.one.entity.CacheEntity;
 import com.xinlixue.one.entity.ResultSetEntity;
+import com.xinlixue.one.entity.SaveResultArg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,10 +49,10 @@ public class XinLiXueService {
 
         List<ResultSetEntity> resultSetEntityList=new ArrayList<>();
         // 选择情景
-        List<Integer> qingjings= Arrays.asList(1,2);
+        List<Integer> qingjings= Arrays.asList(1);
         Collections.shuffle(qingjings);
         //小人的数量
-        List<Integer> peoples= Arrays.asList(1,2,3,4);
+        List<Integer> peoples= Arrays.asList(1);
         Collections.shuffle(peoples);
         //小人移动的方向20次 10次向上 10次向下
         List<Integer> peopleMoves = Arrays.asList(1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2);
@@ -108,6 +109,7 @@ public class XinLiXueService {
         }
         return resultSetEntityList;
     }
+    public void saveResult(SaveResultArg saveResultArg){}
 
 
 }

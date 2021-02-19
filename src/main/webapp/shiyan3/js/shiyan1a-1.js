@@ -10,25 +10,21 @@
 				//count();
 				//console.log(times)
 				if(times==0){
-					ajax();
+					ajax("xinlixue/count",{"name":"pengsh","count":times});
 				}
 				//data2();
 			}
 			
 			
-			function ajax(){
-				//alert("csa")
-				//这里是生成的模拟后台数据
-				//url，请求路径。       //请求的数据。
-				Mock.mock('http://www.bai.com',{'qingjing|1':0,'peoples|1':0,'fangxiang|1-2':0,'huozai|1-2':0})
+			function ajax(url,dataBody){
 				var settings = {
-					"url": "http://localhost:8080/xinlixue/count",
+					"url": "http://localhost:8080/"+url,
 					"method": "POST",
 					"timeout": 0,
 					"headers": {
 						"Content-Type": "application/json"
 					},
-					"data": JSON.stringify({"name":"pengsh","count":0}),
+					"data": JSON.stringify(dataBody),
 				};
 				$.ajax(settings).done(function (response) {
 					var data=response.result
@@ -159,7 +155,26 @@ function changeChoose (choose) {
   con['choose'] = choose
   const json = JSON.stringify(con);
   console.log("封装成json数据为：" + json);
-  //console.log(choose);
+  return json;
+}
+
+			/**
+			 * 这个是请求保存结果的接口
+			 */
+			function saveResult(choose) {
+	var settings = {
+		"url": "http://localhost:8080/xinlixue/saveResult",
+		"method": "POST",
+		"timeout": 0,
+		"headers": {
+			"Content-Type": "application/json"
+		},
+		"data": JSON.stringify(choose),
+	};
+	$.ajax(settings).done(function (response) {
+		console.log("save result success"+response)
+	});
+
 }
 
 //_____________________________1个小人向上移动
@@ -184,10 +199,10 @@ document.getElementById("p2").style.top = 0 + 'px'
                 $(".p2").animate({ left: "623px" }, 1000, function () {
                   //后台要记录的按键反应数据
                   choose = 1
-                 // changeChoose(choose)
+                   saveResult(changeChoose(choose))
                   console.log("按键" + choose)
                   //每次按键后,向后台传递参数
-				  ajax();
+				  ajax("xinlixue/count",{"name":"pengsh","count":times});
                   //刷新页面重置位置
                   //location.reload();
                 })
@@ -200,8 +215,9 @@ document.getElementById("p2").style.top = 0 + 'px'
                   choose = 2
                   //changeChoose(choose)
                   console.log("按键" + choose)
+					saveResult(changeChoose(choose))
                   //每次按键后,向后台传递参数
-                  ajax();
+					ajax("xinlixue/count",{"name":"pengsh","count":times});
                   //刷新页面重置位置
                   //location.reload();
                 })
@@ -243,9 +259,11 @@ document.getElementById("p2").style.top = 0 + 'px'
 																	//后台要记录的按键反应数据
 																	choose=1
 																	//changeChoose(choose)
+
 																	console.log("按键" + choose)
+																	saveResult(changeChoose(choose))
 																	//每次按键后,向后台传递参数
-																	ajax();
+																	ajax("xinlixue/count",{"name":"pengsh","count":times});
 																	//刷新页面重置位置
 																	//location.reload();
 																})
@@ -259,7 +277,7 @@ document.getElementById("p2").style.top = 0 + 'px'
 																//changeChoose(choose)
 																console.log("按键" + choose)
 																//每次按键后,向后台传递参数
-																ajax();
+																ajax("xinlixue/count",{"name":"pengsh","count":times});
 																//刷新页面重置位置
 																//location.reload();
 															})

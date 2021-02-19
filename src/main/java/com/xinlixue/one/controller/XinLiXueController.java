@@ -3,6 +3,7 @@ package com.xinlixue.one.controller;
 import com.alibaba.fastjson.JSON;
 import com.xinlixue.one.entity.RequestArgs;
 import com.xinlixue.one.entity.ResultSetEntity;
+import com.xinlixue.one.entity.SaveResultArg;
 import com.xinlixue.one.http.HttpResponseResult;
 import com.xinlixue.one.service.XinLiXueService;
 import io.swagger.models.auth.In;
@@ -49,6 +50,22 @@ public class XinLiXueController {
             responseResult.setErrCode(500);
             responseResult.setErrMessage(e.getMessage());
     }
+        return responseResult;
+    }
+
+    @RequestMapping(value = "/saveResult", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}, method = RequestMethod.POST)
+    @ResponseBody
+    public HttpResponseResult<JSON> saveResult(@RequestBody String bodyJson) {
+        HttpResponseResult responseResult = new HttpResponseResult();
+        try {
+            System.out.println(bodyJson);
+            SaveResultArg saveResultArg= JSON.parseObject(bodyJson, SaveResultArg.class);
+            System.out.println(saveResultArg.toString());
+            responseResult.setResult(JSON.toJSON(saveResultArg));
+        }catch (Exception e){
+            responseResult.setErrCode(500);
+            responseResult.setErrMessage(e.getMessage());
+        }
         return responseResult;
     }
 
