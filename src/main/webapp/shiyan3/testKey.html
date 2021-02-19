@@ -1,0 +1,23 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>监听键盘按键Demo</title>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(
+   function(){
+   	document.onkeydown = function(){
+    var oEvent = window.event;
+    if (oEvent.ctrlKey && oEvent.altKey && oEvent.keyCode ==77) {
+    		alert("刚刚按下的是 ctrl + alt + m 组合键");
+			return false;
+    }
+	oEvent.preventDefault();
+	oEvent.stopPropagation();
+  }
+     
+});
+</script>
+</head>
+</html>

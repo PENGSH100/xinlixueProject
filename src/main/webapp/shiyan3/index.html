@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.body{
+				width: 1024px;
+				height: 550px;
+				position: relative;
+				margin: 0 auto;
+				background-image: url(img/hh.jpg);
+				background-size: cover;
+				border: 1px solid black;
+			}
+			.people{
+				width: 220px;
+				height: 100px;
+				position: relative;
+				top: -550px;
+				left: 0px;
+			}
+			.img{
+				width:38px;
+				height: 100px;
+				position: relative;
+				top: 0px;
+				z-index: 10;
+			}
+			.p1,.p2,.p3,.p4,.p5{
+				position: relative;
+			}
+			
+		</style>
+		<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="js/jQueryRotate.js"></script>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var p1Top=$(".p1").position().top
+				var p1Left=$(".p1").position().left
+				
+				//生成随机数
+				var order=parseInt(Math.random()*2);
+				console.log(order);
+				move();
+				function move(){
+					//后台传值，根据后台的值确定调用哪个函数，后台写随机函数，每个试次出现的次数
+					//后台生成1--9个数值，每个10次，随机打乱，传给前端
+					//FourDown();
+					//FourUp();
+					//TwoUp();
+					//TwoDown();
+					//OneUp();
+					//  if (order==0){
+					// 	OneDown();
+					// }
+					// if (order==1){
+					// 	OneUp();
+					// } 
+				OneUp();
+				}
+				
+			}
+			function test(){
+				$(".p1").animate({left:"515px",top:"-100px"},2000,function(){
+					$(".p1").hide(100);
+						// $(".p1").animate({left:"550px",top:"-100px"},100,function(){
+						// 	$(".p1").hide(1000);
+						// })
+						
+					
+				})
+			}
+			
+			//_____________________________4个小人向上移动
+						function FourUp(){
+							$(".p1").animate({left:"188px"},2000,function(){
+												$(".p1").animate({left:"553px",top:"-200px"},2000,function(){
+													$(".p1").animate({left:"580px"},1000,function(){
+															$(".p2").animate({left:"230px"},2000,function(){
+																$(".p2").animate({left:"593px",top:"-200px"},2000,function(){
+																	$(".p2").animate({left:"620px"},1000,function(){
+																		$(".p3").animate({left:"274px"},2000,function(){
+																			$(".p3").animate({left:"633px",top:"-200px"},2000,function(){
+																				$(".p3").animate({left:"663px"},1000,function(){
+																					$(".p4").animate({left:"316px"},2000,function(){
+																						$(".p4").animate({left:"673px",top:"-200px"},2000,function(){
+																							$(".p4").animate({left:"703px"},1000,function(){
+																								$(".p5").animate({left:"360px"},2000,function(){
+																									//开门
+																									// 门2开
+																									$("#b").rotate({center:["755px","433px"],animateTo: 150});
+																									//如果按键向上
+																									 document.onkeydown=function(event){
+																										var e = event || window.event || arguments.callee.caller.arguments[0];
+																									 if(e && e.keyCode==38){ // 按上键 
+																									  //要做的事情
+																										$(".p5").animate({left:"713px",top:"-200px"},2000,function(){
+																											$(".p5").animate({left:"753px"},1000)
+																										})
+																									  }
+																									  if(e && e.keyCode==40){ // 按下键
+																									   //要做的事情
+																									   $(".p5").animate({left:"713px",top:"230px"},2000,function(){
+																									   	$(".p5").animate({left:"753px"},1000)
+																									   })
+																									   }
+																									}; 
+																									
+																								})
+																							})
+																						})
+																					})
+																				})
+																			})
+																		})
+																	})
+																})
+															})
+															//$(".p4").animate({left:"314px"},2000)
+															//$(".p5").animate({left:"356px"},2000)
+														
+													});
+												});
+							});
+						}
+							
+				//_____________________________4个小人向上移动完 
+			
+			
+				 //_____________________________4个小人向下移动
+						function FourDown(){
+							$(".p1").animate({left:"188px"},2000,function(){
+												$(".p1").animate({left:"553px",top:"230px"},2000,function(){
+													$(".p1").animate({left:"580px"},1000,function(){
+															$(".p2").animate({left:"230px"},2000,function(){
+																$(".p2").animate({left:"593px",top:"230px"},2000,function(){
+																	$(".p2").animate({left:"620px"},1000,function(){
+																		$(".p3").animate({left:"274px"},2000,function(){
+																			$(".p3").animate({left:"633px",top:"230px"},2000,function(){
+																				$(".p3").animate({left:"663px"},1000,function(){
+																					$(".p4").animate({left:"316px"},2000,function(){
+																						$(".p4").animate({left:"673px",top:"230px"},2000,function(){
+																							$(".p4").animate({left:"703px"},1000,function(){
+																								$(".p5").animate({left:"360px"},2000,function(){
+																									//开门
+																									// 门2开
+																									$("#b").rotate({center:["755px","433px"],animateTo: 150});
+																									//如果按键向上
+																									 document.onkeydown=function(event){
+																										var e = event || window.event || arguments.callee.caller.arguments[0];
+																									 if(e && e.keyCode==40){ // 按下键 
+																									  //要做的事情
+																										$(".p5").animate({left:"713px",top:"230px"},2000,function(){
+																											$(".p5").animate({left:"753px"},1000)
+																										})
+																									  }
+																									  if(e && e.keyCode==38){ // 按上键
+																									   //要做的事情
+																									   $(".p5").animate({left:"713px",top:"-200px"},2000,function(){
+																									   	$(".p5").animate({left:"753px"},1000)
+																									   })
+																									   
+																									   }
+																									}; 
+																									
+																								})
+																							})
+																						})
+																					})
+																				})
+																			})
+																		})
+																	})
+																})
+															})
+															//$(".p4").animate({left:"314px"},2000)
+															//$(".p5").animate({left:"356px"},2000)
+														
+													});
+												});
+							});
+						}
+							
+				//_____________________________4个小人向下移动完
+				
+				
+		//_____________________________2个小人向上移动
+					function TwoUp(){
+						$(".p1").animate({left:"188px"},2000,function(){
+											$(".p1").animate({left:"553px",top:"-200px"},2000,function(){
+												$(".p1").animate({left:"580px"},1000,function(){
+														$(".p2").animate({left:"230px"},2000,function(){
+															$(".p2").animate({left:"593px",top:"-200px"},2000,function(){
+																$(".p2").animate({left:"620px"},1000,function(){
+																	$(".p3").animate({left:"274px"},2000,function(){
+																		//开门
+																		// 门2开
+																		$("#b").rotate({center:["755px","433px"],animateTo: 150});
+																		//如果按键向上
+																		 document.onkeydown=function(event){
+																			var e = event || window.event || arguments.callee.caller.arguments[0];
+																		 if(e && e.keyCode==38){ // 按上键 
+																		  //要做的事情
+																			$(".p3").animate({left:"633px",top:"-200px"},2000,function(){
+																				$(".p3").animate({left:"663px"},1000)
+																			})
+																		  }
+																		  if(e && e.keyCode==40){ // 按下键
+																		   //要做的事情
+																		   $(".p3").animate({left:"633px",top:"230px"},2000,function(){
+																		   	$(".p3").animate({left:"663px"},1000)
+																		   })
+																		   }
+																		}; 
+																	})
+																})
+															})
+														})
+														//$(".p4").animate({left:"314px"},2000)
+														//$(".p5").animate({left:"356px"},2000)
+													
+												});
+											});
+						});
+					}
+						
+			//_____________________________2个小人向上移动完 
+			
+			//_____________________________2个小人向下移动
+					function TwoDown(){
+						$(".p1").animate({left:"188px"},2000,function(){
+											$(".p1").animate({left:"553px",top:"230px"},2000,function(){
+												$(".p1").animate({left:"580px"},1000,function(){
+														$(".p2").animate({left:"230px"},2000,function(){
+															$(".p2").animate({left:"593px",top:"230px"},2000,function(){
+																$(".p2").animate({left:"620px"},1000,function(){
+																	$(".p3").animate({left:"274px"},2000,function(){
+																		//开门
+																		// 门2开
+																		$("#b").rotate({center:["755px","433px"],animateTo: 150});
+																		//如果按键向上
+																		 document.onkeydown=function(event){
+																			var e = event || window.event || arguments.callee.caller.arguments[0];
+																		 if(e && e.keyCode==40){ // 按下键 
+																		  //要做的事情
+																			$(".p3").animate({left:"633px",top:"230px"},2000,function(){
+																				$(".p3").animate({left:"663px"},1000)
+																			})
+																		  }
+																		  if(e && e.keyCode==38){ // 按上键
+																		   //要做的事情
+																		   $(".p3").animate({left:"633px",top:"-200px"},2000,function(){
+																		   	$(".p3").animate({left:"663px"},1000)
+																		   })
+																		   
+																		   }
+																		}; 
+																	})
+																})
+															})
+														})
+														//$(".p4").animate({left:"314px"},2000)
+														//$(".p5").animate({left:"356px"},2000)
+													
+												});
+											});
+						});
+					}
+						
+			//_____________________________2个小人向下移动完
+			
+			//_____________________________1个小人向上移动
+						function OneUp(){
+							temp=1;
+							//如果是开两个门，从后台传值1、2；OneDown条件下两个门开、一个门开这两个条件各半
+							/* 					if(){
+													$("#a").rotate({center:["755px","205px"],animateTo: -150});
+													$("#b").rotate({center:["750px","408px"],animateTo: 150});
+												} */
+												
+												//如果开一个门
+												if(temp==1){
+													$("#a").rotate({center:["750px","205px"],animateTo: -150});
+												}
+												
+							$(".p1").animate({left:"188px"},2000,function(){
+												$(".p1").animate({left:"553px",top:"-200px"},2000,function(){
+													$(".p1").animate({left:"580px"},1000,function(){
+															$(".p2").animate({left:"230px"},2000,function(){
+																//开门
+																// 门2开
+																$("#b").rotate({center:["750px","408px"],animateTo: 150});
+																//如果按键向上
+																 document.onkeydown=function(event){
+																	var e = event || window.event || arguments.callee.caller.arguments[0];
+																 if(e && e.keyCode==38){ // 按上键 
+																  //要做的事情
+																	$(".p2").animate({left:"593px",top:"-200px"},2000,function(){
+																		$(".p2").animate({left:"623px"},1000,function(){
+																			//刷新页面重置位置
+																			//location.reload();
+																			$(".p1").css("left",p1Top)
+																			$(".p1").css("left",p1Left)
+																		})
+																	})
+																  }
+																  if(e && e.keyCode==40){ // 按下键
+																   //要做的事情
+																   $(".p2").animate({left:"593px",top:"230px"},2000,function(){
+																   	$(".p2").animate({left:"623px"},1000,function(){
+																		//刷新页面重置位置
+																		//location.reload();
+																		$(".p1").style.left=300+'px';
+																	})
+																   })
+																   }
+																}; 
+															})
+														
+													});
+												});
+							});
+						}
+							
+				//_____________________________1个小人向上移动完
+				
+		//_____________________________1个小人向下移动
+				function OneDown(){
+					temp=1;
+					//如果是开两个门，从后台传值1、2；OneDown条件下两个门开、一个门开这两个条件各半
+/* 					if(){
+						$("#a").rotate({center:["755px","115px"],animateTo: -150});
+						$("#b").rotate({center:["755px","433px"],animateTo: 150});
+					} */
+					
+					//如果开一个门
+					if(temp==1){
+						$("#b").rotate({center:["755px","433px"],animateTo: 150});
+					}
+					
+					
+					$(".p1").animate({left:"188px"},2000,function(){
+										$(".p1").animate({left:"553px",top:"230px"},2000,function(){
+											$(".p1").animate({left:"580px"},1000,function(){
+													$(".p2").animate({left:"230px"},2000,function(){
+														//开门
+														// 如果开两个门
+														$("#a").rotate({center:["755px","115px"],animateTo: -150});
+														//如果开一个门，就不能设置可以往关闭的门走，按键反应需要修改
+														
+														//如果按键向上
+														 document.onkeydown=function(event){
+															var e = event || window.event || arguments.callee.caller.arguments[0];
+														 if(e && e.keyCode==38){ // 按上键 
+														  //要做的事情
+															$(".p2").animate({left:"593px",top:"-200px"},2000,function(){
+																$(".p2").animate({left:"623px"},1000,function(){
+																	//刷新页面重置位置
+																	//location.reload();
+																	$(".p1").css("left","p1Top")
+																	$(".p1").css("left","p1Left")
+																})
+															})
+														  }
+														  if(e && e.keyCode==40){ // 按下键
+														   //要做的事情
+														   $(".p2").animate({left:"593px",top:"230px"},2000,function(){
+														   	$(".p2").animate({left:"623px"},1000,function(){
+																//向后台传值：按的哪个键
+																//刷新页面重置位置
+																//location.reload();
+																$(".p1").css("left",p1Top)
+																$(".p1").css("left",p1Left)
+															})
+														   })
+														   }
+														}; 
+													})
+
+												
+											});
+										});
+					});
+				}
+					
+		//_____________________________1个小人向下移动完
+			
+		</script>
+	</head>
+	<body>
+		
+		<div class="body">
+			 <svg width="1200" height="800">	
+			//门1
+			  <line id="a"  x1="750px" x2="750px" y1="30px" y2="205px" stroke="red" fill="transparent" stroke-width="5"></line>
+			  //门2
+			  <line id="b" x1="750px" x2="750px" y1="408px" y2="585px" stroke="red" fill="transparent" stroke-width="5"/></line>
+			</svg>
+			<div class="people">
+				<div class="p5" style="width: 38px;height: 100px;display: inline-block;">
+					<img class="img" src="img/people.svg"/>
+				</div>
+				<div class="p4" style="width: 38px;height: 100px;display: inline-block;">
+					<img class="img" src="img/people.svg"/>
+				</div>
+				<div class="p3" style="width: 38px;height: 100px;display: inline-block;">
+					<img class="img" src="img/people.svg"/>
+				</div>
+				<div class="p2" style="width: 38px;height: 100px;display: inline-block;">
+					<img class="img" src="img/people.svg"/>
+				</div>
+				<div  class="p1" id="lin" style="width: 38px;height: 100px;display: inline-block;">
+					<img  class="img" src="img/dd.png"/>
+				</div>
+			</div>
+			
+			<!-- 第一个通道遮挡 
+			<div style="width: 200px;height: 108px;position: relative;left: 758px;top: -901px;background: #BFBFBF;z-index: 15;"></div>
+			
+			<div style="width: 200px;height: 108px;position: relative;left: 758px;top: -578px;background: #BFBFBF;z-index: 15;"></div>
+			-->
+		</div>
+	</body>
+</html>

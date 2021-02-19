@@ -18,18 +18,19 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   <!-- 用来设置版本号 -->
-    <srping.version>4.0.2.RELEASE</srping.version>
+    <srping.version>4.3.21.RELEASE</srping.version>
     <mybatis.version>3.4.2</mybatis.version>
     <slf4j.version>1.7.12</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
     <druid.version>1.0.9</druid.version>
+    <caffeine.cache.version>2.7.0</caffeine.cache.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     <!-- spring框架包 -->
@@ -91,7 +92,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>${srping.version}</version>
+      <version>4.0.2.RELEASE</version>
     </dependency>
     <!-- spring框架包 -->
     <!-- mybatis框架包 -->
@@ -155,6 +156,17 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-jersey2-jaxrs</artifactId>
+      <version>1.5.9</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.ben-manes.caffeine</groupId>
+      <artifactId>caffeine</artifactId>
+      <version>${caffeine.cache.version}</version>
     </dependency>
   </dependencies>
 

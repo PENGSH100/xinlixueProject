@@ -8,4 +8,6 @@
                         http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <import resource="classpath:spring/spring-db.xml"/>
     <import resource="classpath:spring/spring-mvc.xml"/>
+    <bean id="applicationContextHolder" class="com.xinlixue.one.context.ApplicationContextHolder"/>
+
 </beans>
