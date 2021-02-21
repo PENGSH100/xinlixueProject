@@ -26,7 +26,11 @@
 					},
 					"data": JSON.stringify(dataBody),
 				};
-				$.ajax(settings).done(function (response) {
+				$.ajax(settings).done( function (response) {
+				    if(times%2==0&&times!=0){
+                        getTimesResult(id);
+                    }
+				    times++;
 					var data=response.result
 					console.log("data2:"+data)
 					//情境=1时开一个门,情境=2时开两个门,men=1时,开上门,men=2是开下门
@@ -136,10 +140,32 @@ function changeChoose (choose) {
 		"data": choose,
 	};
 	$.ajax(settings).done(function (response) {
-		console.log("save result success"+response)
+		console.log("save result success"+response);
 	});
 
 }
+            /**
+             * 这个是请求保存结果的接口
+             */
+            function getTimesResult(id) {
+                console.log("getTimesResult 封装成json数据为：" + id);
+                var settings = {
+                    "url": "http://localhost:8080/xinlixue/getTimesResult",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({"id":id}),
+                };
+                $.ajax(settings).done(function (response) {
+                    alert("休息一会吧！'</br>' 你当前的积分为: "+response.result+" 分")
+                    console.log("getTimesResult save result success"+response.result);
+
+                });
+
+
+            }
 
 //_____________________________1个小人向上移动
 function OneUp () {

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.beans.IntrospectionException;
 import java.sql.ResultSet;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -111,7 +112,7 @@ public class XinLiXueService {
             resultSetEntityList.add(resultSetEntity);
 
         }
-        int j=0;
+        int j=4;
         while (j<2){
             List<Integer> peoples1= Arrays.asList(1,2);
             List<Integer> peoples2= Arrays.asList(1,2);
@@ -194,6 +195,15 @@ public class XinLiXueService {
             }
         }
 
+
+    }
+
+    public Integer getTimesResult(Integer id){
+        Map resultMap=xinLinXueMapper.getTimesResultById(id);
+        if(resultMap==null||resultMap.size()==0){
+            return 0;
+        }
+        return (Integer) resultMap.getOrDefault("result",0);
 
     }
 

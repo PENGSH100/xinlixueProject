@@ -31,4 +31,7 @@ public interface XinLinXueMapper{
                    @Param("times") Integer times,
                    @Param("result") Integer result);
 
+    @Select("select id,times,result from user_result where id=#{id}")
+    Map getTimesResultById(@Param("id") Integer id);
+
 }

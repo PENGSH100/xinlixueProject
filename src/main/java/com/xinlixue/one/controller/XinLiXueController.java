@@ -69,5 +69,21 @@ public class XinLiXueController {
         }
         return responseResult;
     }
+    @RequestMapping(value = "/getTimesResult", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}, method = RequestMethod.POST)
+    @ResponseBody
+    public HttpResponseResult<JSON> getTimesResult(@RequestBody String bodyJson) {
+        HttpResponseResult responseResult = new HttpResponseResult();
+        try {
+            System.out.println(bodyJson);
+            SaveResultArg saveResultArg= JSON.parseObject(bodyJson, SaveResultArg.class);
+            Integer res=xinLiXueService.getTimesResult(saveResultArg.getId());
+            responseResult.setResult(JSON.toJSON(res));
+        }catch (Exception e){
+            System.out.println("出错了。。。。。。。。。。"+e.getMessage());
+            responseResult.setErrCode(500);
+            responseResult.setErrMessage(e.getMessage());
+        }
+        return responseResult;
+    }
 
 }
