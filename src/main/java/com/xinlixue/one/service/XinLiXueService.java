@@ -96,13 +96,13 @@ public class XinLiXueService {
         for(Integer peopleMove:peopleMoves){
             resultSetEntity=new ResultSetEntity();
             if(peopleMove==1){
-                resultSetEntity.setQingjing(1);
+                resultSetEntity.setQingjing(3);
                 resultSetEntity.setPeoples(0);
                 resultSetEntity.setFangxiang(peopleMove);
                 resultSetEntity.setHuozai(fireUpMoves.get(up));
                 up=up+1;
             }else{
-                resultSetEntity.setQingjing(2);
+                resultSetEntity.setQingjing(3);
                 resultSetEntity.setPeoples(0);
                 resultSetEntity.setFangxiang(peopleMove);
                 resultSetEntity.setHuozai(fireUpMoves.get(down));
@@ -111,6 +111,52 @@ public class XinLiXueService {
             resultSetEntityList.add(resultSetEntity);
 
         }
+        int j=0;
+        while (j<2){
+            List<Integer> peoples1= Arrays.asList(1,2);
+            List<Integer> peoples2= Arrays.asList(1,2);
+            Collections.shuffle(peoples1);
+            Collections.shuffle(peoples2);
+            ResultSetEntity r1=null;
+            for(int i=0;i<2;i++){
+                r1=new ResultSetEntity();
+                r1.setQingjing(4);
+                r1.setPeoples(2);
+                r1.setFangxiang(peoples1.get(i));
+                r1.setHuozai(peoples2.get(i));
+                resultSetEntityList.add(r1);
+            }
+            List<Integer> peoples3= Arrays.asList(1,2,3,4);
+            List<Integer> peoples4= Arrays.asList(1,2,1,2);
+            Collections.shuffle(peoples1);
+            Collections.shuffle(peoples2);
+            ResultSetEntity r2=null;
+            for(int i=0;i<4;i++){
+                r2=new ResultSetEntity();
+                r2.setQingjing(5);
+                r2.setPeoples(3);
+                r2.setFangxiang(peoples3.get(i));
+                r2.setHuozai(peoples4.get(i));
+                resultSetEntityList.add(r2);
+            }
+            List<Integer> peoples5= Arrays.asList(1,2,3,4,5,6);
+            List<Integer> peoples6= Arrays.asList(1,2,1,2,1,2);
+            Collections.shuffle(peoples1);
+            Collections.shuffle(peoples2);
+            ResultSetEntity r3=null;
+            for(int i=0;i<6;i++){
+                r3=new ResultSetEntity();
+                r3.setQingjing(6);
+                r3.setPeoples(4);
+                r3.setFangxiang(peoples5.get(i));
+                r3.setHuozai(peoples6.get(i));
+                resultSetEntityList.add(r3);
+            }
+            j++;
+        }
+
+        Collections.shuffle(resultSetEntityList);
+        System.out.println("场景数量："+resultSetEntityList.size());
         return resultSetEntityList;
     }
     public void saveResult(SaveResultArg saveResultArg){
