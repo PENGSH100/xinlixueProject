@@ -8,8 +8,6 @@ import java.io.Serializable;
  * @Description
  */
 public class SaveResultArg implements Serializable {
-    private static final long SerializableId=1l;
-    private String name;
     private String  sex;
     private Integer choose;
     private Integer age;
@@ -23,19 +21,6 @@ public class SaveResultArg implements Serializable {
     public void setTimes(Integer times) {
         this.times = times;
     }
-
-    public static long getSerializableId() {
-        return SerializableId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getSex() {
         return sex;
     }
@@ -71,8 +56,7 @@ public class SaveResultArg implements Serializable {
     @Override
     public String toString() {
         return "SaveResultArg{" +
-                "name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
+                "sex='" + sex + '\'' +
                 ", choose=" + choose +
                 ", age=" + age +
                 ", id=" + id +

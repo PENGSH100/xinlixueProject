@@ -10,7 +10,7 @@
 				//count();
 				//console.log(times)
 				if(times==0){
-					ajax("xinlixue/count",{"name":"pengsh","count":times});
+					ajax("xinlixue/count",{"name":id,"count":times});
 				}
 				//data2();
 			}
@@ -102,48 +102,11 @@
 					}
 				});
 				// console.log("返回结果："+responseData.toString())
-			/*	$.ajax({
-				    url:'http://localhost:8080/xinlixue/count',
-					type:"post",
-					data:{"name":"pengsh","count":0},
-				    dataType:'json',
-					async:true,
-				    success:function(data){
-						console.log("DATA:"+data)
-						responseData=data;
-						console.log("responseData:"+responseData)
-						times++;
-						console.log('times'+times)
 
-				    }
-					
-				})*/
 			}
 			
 
-			
-			// function count() {
-			//     // 当前浏览器是否支持localStorage
-			//     if(window.localStorage) {
-			//         // 是否已经有记录了，如果有进入操作
-			//         if(window.localStorage.getItem("count")) {
-			//             //拿出key对应的value， 因为存储进去的是字符串。
-			//             var c = parseInt(window.localStorage.getItem("count"));
-			//             // 设置key，value加1
-			//             window.localStorage.setItem("count",c+1);
-			//             console.log("页面刷新次数"+parseInt(window.localStorage.getItem("count")));
-			// 			times=parseInt(window.localStorage.getItem("count"))
-			// 			id=1;
-			// 			age=23;
-			// 			sex=2;
-			// 			choose=0;
-			//         }else {
-			//             //如果没有检查到key, 那肯定没设置，那就让他默认为0
-			//             window.localStorage.setItem("count",0);
-			//             console.log(0);
-			//         }
-			//     }
-			// }
+
 			
 
 
@@ -152,7 +115,7 @@ function changeChoose (choose) {
   con["id"] = id;
   con["age"] = age;
   con["sex"] = sex;
-  con['choose'] = choose
+  con['choose'] = choose;
   const json = JSON.stringify(con);
   console.log("封装成json数据为：" + json);
   return json;
@@ -162,6 +125,7 @@ function changeChoose (choose) {
 			 * 这个是请求保存结果的接口
 			 */
 			function saveResult(choose) {
+				console.log("saveResult 封装成json数据为：" + choose);
 	var settings = {
 		"url": "http://localhost:8080/xinlixue/saveResult",
 		"method": "POST",
@@ -169,7 +133,7 @@ function changeChoose (choose) {
 		"headers": {
 			"Content-Type": "application/json"
 		},
-		"data": JSON.stringify(choose),
+		"data": choose,
 	};
 	$.ajax(settings).done(function (response) {
 		console.log("save result success"+response)
@@ -202,7 +166,7 @@ document.getElementById("p2").style.top = 0 + 'px'
                    saveResult(changeChoose(choose))
                   console.log("按键" + choose)
                   //每次按键后,向后台传递参数
-				  ajax("xinlixue/count",{"name":"pengsh","count":times});
+				  ajax("xinlixue/count",{"name":id,"count":times});
                   //刷新页面重置位置
                   //location.reload();
                 })
@@ -217,7 +181,7 @@ document.getElementById("p2").style.top = 0 + 'px'
                   console.log("按键" + choose)
 					saveResult(changeChoose(choose))
                   //每次按键后,向后台传递参数
-					ajax("xinlixue/count",{"name":"pengsh","count":times});
+					ajax("xinlixue/count",{"name":id,"count":times});
                   //刷新页面重置位置
                   //location.reload();
                 })
@@ -263,7 +227,7 @@ document.getElementById("p2").style.top = 0 + 'px'
 																	console.log("按键" + choose)
 																	saveResult(changeChoose(choose))
 																	//每次按键后,向后台传递参数
-																	ajax("xinlixue/count",{"name":"pengsh","count":times});
+																	ajax("xinlixue/count",{"name":id,"count":times});
 																	//刷新页面重置位置
 																	//location.reload();
 																})
@@ -276,8 +240,9 @@ document.getElementById("p2").style.top = 0 + 'px'
 																choose=2
 																//changeChoose(choose)
 																console.log("按键" + choose)
+																saveResult(changeChoose(choose))
 																//每次按键后,向后台传递参数
-																ajax("xinlixue/count",{"name":"pengsh","count":times});
+																ajax("xinlixue/count",{"name":id,"count":times});
 																//刷新页面重置位置
 																//location.reload();
 															})

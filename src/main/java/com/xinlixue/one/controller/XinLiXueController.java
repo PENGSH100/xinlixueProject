@@ -60,9 +60,10 @@ public class XinLiXueController {
         try {
             System.out.println(bodyJson);
             SaveResultArg saveResultArg= JSON.parseObject(bodyJson, SaveResultArg.class);
-            System.out.println(saveResultArg.toString());
+            xinLiXueService.saveResult(saveResultArg);
             responseResult.setResult(JSON.toJSON(saveResultArg));
         }catch (Exception e){
+            System.out.println("出错了。。。。。。。。。。"+e.getMessage());
             responseResult.setErrCode(500);
             responseResult.setErrMessage(e.getMessage());
         }

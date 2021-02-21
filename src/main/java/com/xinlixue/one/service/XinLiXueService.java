@@ -5,6 +5,8 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import com.xinlixue.one.entity.CacheEntity;
 import com.xinlixue.one.entity.ResultSetEntity;
 import com.xinlixue.one.entity.SaveResultArg;
+import com.xinlixue.one.mapper.XinLinXueMapper;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ public class XinLiXueService {
     @Autowired
     private EffectInfoCacheLoader effectInfoCacheLoader;
     private Cache<String, CacheEntity> batchCaffCalCache =null;
+    @Autowired
+    private XinLinXueMapper xinLinXueMapper;
 
     @PostConstruct
     public void init(){
@@ -109,7 +113,43 @@ public class XinLiXueService {
         }
         return resultSetEntityList;
     }
-    public void saveResult(SaveResultArg saveResultArg){}
+    public void saveResult(SaveResultArg saveResultArg){
+        System.out.println(saveResultArg.toString());
+        //获取当前对象的id值
+        Integer id=saveResultArg.getId();
+        //获取当前对象的实验次数；
+        Integer times=saveResultArg.getTimes();
+        Integer choose=saveResultArg.getChoose();
+        Map resultMap=xinLinXueMapper.getSaveResult(id);
+        ResultSetEntity resultSetEntity=getCount(id.toString(),times);
+        //火灾的位置
+        Integer fire=resultSetEntity.getHuozai();
+        //说明数据库里面是没有结果 第一次
+        if(resultMap==null||resultMap.size()==0){
+            int res=1;
+            if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
+                res=-1;
+            }
+            //把结果存入数据库 做insert 操作
+            xinLinXueMapper.saveResult(id,times,res);
+        }else{
+            Integer oldTimes=(Integer) resultMap.get("times");
+            //获取之前的分数
+            Integer oldResult=(Integer) resultMap.get("result");
+            //判断当前的次数和之前的次数是不是一致的
+            if(!times.equals(oldTimes)){
+                if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
+                    oldResult=oldResult-1;
+                }else{
+                    oldResult=oldResult+1;
+                }
+                //把结果存入数据库 update 操作
+                xinLinXueMapper.updateResult(id,times,oldResult);
+            }
+        }
+
+
+    }
 
 
 }
