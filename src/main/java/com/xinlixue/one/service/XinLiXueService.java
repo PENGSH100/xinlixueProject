@@ -5,6 +5,7 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import com.xinlixue.one.entity.CacheEntity;
 import com.xinlixue.one.entity.ResultSetEntity;
 import com.xinlixue.one.entity.SaveResultArg;
+import com.xinlixue.one.entity.UserEntityArg;
 import com.xinlixue.one.mapper.XinLinXueMapper;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,35 +168,39 @@ public class XinLiXueService {
         //获取当前对象的实验次数；
         Integer times=saveResultArg.getTimes();
         Integer choose=saveResultArg.getChoose();
-        Map resultMap=xinLinXueMapper.getSaveResult(id);
+        //获取当前试验次数
+        Map resultMap=xinLinXueMapper.getSaveResult(id,times);
         ResultSetEntity resultSetEntity=getCount(id.toString(),times);
         //火灾的位置
         Integer fire=resultSetEntity.getHuozai();
+        Integer age=saveResultArg.getAge();
+        String  sex=saveResultArg.getSex();
+        Integer fangxiang=resultSetEntity.getFangxiang();
+        Integer huozai=resultSetEntity.getHuozai();
+        Integer qingjing=resultSetEntity.getQingjing();
         //说明数据库里面是没有结果 第一次
         if(resultMap==null||resultMap.size()==0){
-            int res=1;
-            if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
-                res=-1;
-            }
-            //把结果存入数据库 做insert 操作
-            xinLinXueMapper.saveResult(id,times,res);
-        }else{
-            Integer oldTimes=(Integer) resultMap.get("times");
-            //获取之前的分数
-            Integer oldResult=(Integer) resultMap.get("result");
-            //判断当前的次数和之前的次数是不是一致的
-            if(!times.equals(oldTimes)){
+            if(times==0){
+                int res=1;
+                if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
+                    res=-1;
+                }
+                //把结果存入数据库 做insert 操作
+                xinLinXueMapper.saveResult(id,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,res);
+            }else{
+                //获取前一次的数据结果
+                Map OldResultMap=xinLinXueMapper.getSaveResult(id,times-1);
+                //获取之前的分数
+                Integer oldResult=(Integer) OldResultMap.get("result");
                 if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
                     oldResult=oldResult-1;
                 }else{
                     oldResult=oldResult+1;
                 }
-                //把结果存入数据库 update 操作
-                xinLinXueMapper.updateResult(id,times,oldResult);
+                //把结果存入数据库 做insert 操作
+                xinLinXueMapper.saveResult(id,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,oldResult);
             }
         }
-
-
     }
 
     public Integer getTimesResult(Integer id){
@@ -205,6 +210,14 @@ public class XinLiXueService {
         }
         return (Integer) resultMap.getOrDefault("result",0);
 
+    }
+
+    public void login(UserEntityArg userEntityArg){
+        //获取当前被试的编号
+        String sub=userEntityArg.getSub();
+        Integer age=userEntityArg.getAge();
+        Integer sex=userEntityArg.getSex();
+        int flag=xinLinXueMapper.login(sub,age,sex);
     }
 
 

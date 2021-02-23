@@ -19,12 +19,17 @@ public interface XinLinXueMapper{
 
     @Select("select * from org_employee_user")
     List<Map> getAll();
-    @Select("select times,result from user_result where id=#{id}")
-    Map getSaveResult(@Param("id") Integer id);
+    @Select("select times,result from user_result where id=#{id} and times=#{times}")
+    Map getSaveResult(@Param("id") Integer id,@Param("times") Integer times);
 
-    @Insert("INSERT INTO user_result (id,times,result) values (${id},${times},${result})")
+    @Insert("INSERT INTO user_result (id,age,sex,times,choose,fangxiang,huozai,result) values (${id},${times},${result})")
     int saveResult(@Param("id") Integer id,
+                   @Param("age") Integer age,
+                   @Param("sex") Integer sex,
                    @Param("times") Integer times,
+                   @Param("choose") Integer choose,
+                   @Param("fangxiang") Integer fangxiang,
+                   @Param("huozai") Integer huozai,
                    @Param("result") Integer result);
     @Insert("Update user_result set id=#{id} , times=#{times} , result=#{result}")
     int updateResult(@Param("id") Integer id,
@@ -33,5 +38,10 @@ public interface XinLinXueMapper{
 
     @Select("select id,times,result from user_result where id=#{id}")
     Map getTimesResultById(@Param("id") Integer id);
+
+    @Insert("insert into org_employee_use(sub,age,sex) values(${sub},${age},${sex})")
+    int login(@Param("sub") String sub,
+              @Param("age") Integer age,
+              @Param("sex") Integer sex);
 
 }

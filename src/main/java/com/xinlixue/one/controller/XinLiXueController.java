@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.xinlixue.one.entity.RequestArgs;
 import com.xinlixue.one.entity.ResultSetEntity;
 import com.xinlixue.one.entity.SaveResultArg;
+import com.xinlixue.one.entity.UserEntityArg;
 import com.xinlixue.one.http.HttpResponseResult;
 import com.xinlixue.one.service.XinLiXueService;
 import io.swagger.models.auth.In;
@@ -85,5 +86,19 @@ public class XinLiXueController {
         }
         return responseResult;
     }
-
+    @RequestMapping(value = "/login", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}, method = RequestMethod.POST)
+    @ResponseBody
+    public HttpResponseResult<JSON> login(@RequestBody String bodyJson) {
+        HttpResponseResult responseResult = new HttpResponseResult();
+        try {
+            System.out.println(bodyJson);
+            UserEntityArg userEntityArg= JSON.parseObject(bodyJson, UserEntityArg.class);
+            xinLiXueService.login(userEntityArg);
+        }catch (Exception e){
+            System.out.println("出错了。。。。。。。。。。"+e.getMessage());
+            responseResult.setErrCode(500);
+            responseResult.setErrMessage(e.getMessage());
+        }
+        return responseResult;
+    }
 }
