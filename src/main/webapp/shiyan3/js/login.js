@@ -1,11 +1,11 @@
-window.onload=function(){
-	//check()
-}
-			function check(){
-			   id=register_form.sub.value;
+
+			function login(){
+			   sub=register_form.sub.value;
 			   age=register_form.age.value;
 			   sex=register_form.sex.value;
-			   alert(id);
+			   console.log("sub:"+sub+" age:"+age+" sex:"+sex)
+
+				ajax({"sub":sub,"age":age,"sex":sex});
 			}
 			
 			function ajax(dataBody){
@@ -20,7 +20,7 @@ window.onload=function(){
 				};
 
 				$.ajax(settings).done(function (response) {
-					var data = response.result
-					console.log("data2:" + data)
+					var data = response.result;
+					console.log("login:" + data)
 				});
 }

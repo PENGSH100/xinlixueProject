@@ -39,7 +39,7 @@ public interface XinLinXueMapper{
     @Select("select id,times,result from user_result where id=#{id}")
     Map getTimesResultById(@Param("id") Integer id);
 
-    @Insert("insert into org_employee_use(sub,age,sex) values(${sub},${age},${sex})")
+    @Insert("insert into org_employee_user (sub,age,sex) values ( #{sub},${age},${sex})")
     int login(@Param("sub") String sub,
               @Param("age") Integer age,
               @Param("sex") Integer sex);

@@ -1,5 +1,6 @@
 <html>
 <head>
+	<meta charset="utf-8">
     <title>登录</title>
 	<style>
 		.bg{
@@ -18,24 +19,27 @@
 			left: 350px;
 		}
 	</style>
-    <script type="text/javascript" src="js/login.js"> </script>
 </head>
 <body>
 	<div class="bg">
 		<div class="form">
 		<h2>登录</h2>
-		<form name = "register_form" action="" method="post">
+		<form name = "register_form" action="/xinlixue/login" method="post">
 		        编号:<input type="text" name="sub" maxlength="20" id="sub"><br><br>
 		        年龄:<input type="text" name="age" maxlength="20" id="age"><br><br>
 		        性别:<input type="text" name="sex" maxlength="20" id="sex"><br><br>
 				<a href="shiyan1a.html">
-					 <input name = "Submit" type = "button"   value = "开始" onclick = check()>
+					 <input name = "Submit" type = "button"   value = "开始" onclick = login()>
 				</a>
-		       
+
 		        <input name = "Reset" type = "reset" value = "练习实验">
 		</form>
 		</div>
 		
 	</div>
+	<script type="text/javascript" src="js/jquery-3.0.0.js"></script>
+	<script type="text/javascript" src="js/jQueryRotate.js"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/login.js"> </script>
 </body>
 </html>
