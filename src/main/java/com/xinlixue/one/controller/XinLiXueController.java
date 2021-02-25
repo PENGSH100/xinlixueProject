@@ -38,13 +38,13 @@ public class XinLiXueController {
     }
     @RequestMapping(value = "/count", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}, method = RequestMethod.POST)
     @ResponseBody
-    public HttpResponseResult<JSON> aggBillBoardExec(@RequestBody String bodyJson) {
+    public HttpResponseResult<JSON> getCount(@RequestBody String bodyJson) {
         HttpResponseResult responseResult = new HttpResponseResult();
         try {
             RequestArgs requestArgs= JSON.parseObject(bodyJson, RequestArgs.class);
             String name=requestArgs.getName();
             Integer count=requestArgs.getCount();
-            System.out.println(requestArgs.toString());
+            System.out.println("getCount: "+requestArgs.toString());
         ResultSetEntity resultSetEntity=xinLiXueService.getCount(name,count);
         responseResult.setResult(JSON.toJSON(resultSetEntity));
     }catch (Exception e){
@@ -59,12 +59,12 @@ public class XinLiXueController {
     public HttpResponseResult<JSON> saveResult(@RequestBody String bodyJson) {
         HttpResponseResult responseResult = new HttpResponseResult();
         try {
-            System.out.println(bodyJson);
+            System.out.println("saveResult："+bodyJson);
             SaveResultArg saveResultArg= JSON.parseObject(bodyJson, SaveResultArg.class);
             xinLiXueService.saveResult(saveResultArg);
             responseResult.setResult(JSON.toJSON(saveResultArg));
         }catch (Exception e){
-            System.out.println("出错了。。。。。。。。。。"+e.getMessage());
+            System.out.println("保存结果出错了。。。。。。。。。。"+e);
             responseResult.setErrCode(500);
             responseResult.setErrMessage(e.getMessage());
         }
@@ -75,12 +75,12 @@ public class XinLiXueController {
     public HttpResponseResult<JSON> getTimesResult(@RequestBody String bodyJson) {
         HttpResponseResult responseResult = new HttpResponseResult();
         try {
-            System.out.println(bodyJson);
+            System.out.println("getTimesResult："+bodyJson);
             SaveResultArg saveResultArg= JSON.parseObject(bodyJson, SaveResultArg.class);
-            Integer res=xinLiXueService.getTimesResult(saveResultArg.getId());
+            Integer res=xinLiXueService.getTimesResult(saveResultArg.getSub());
             responseResult.setResult(JSON.toJSON(res));
         }catch (Exception e){
-            System.out.println("出错了。。。。。。。。。。"+e.getMessage());
+            System.out.println("获取结果次数出错了。。。。。。。。。。"+e.getMessage());
             responseResult.setErrCode(500);
             responseResult.setErrMessage(e.getMessage());
         }
@@ -91,11 +91,11 @@ public class XinLiXueController {
     public HttpResponseResult<JSON> login(@RequestBody String bodyJson) {
         HttpResponseResult responseResult = new HttpResponseResult();
         try {
-            System.out.println(bodyJson);
+            System.out.println("login："+bodyJson);
             UserEntityArg userEntityArg= JSON.parseObject(bodyJson, UserEntityArg.class);
             xinLiXueService.login(userEntityArg);
         }catch (Exception e){
-            System.out.println("出错了。。。。。。。。。。"+e.getMessage());
+            System.out.println("登录出错了。。。。。。。。。。"+e.getMessage());
             responseResult.setErrCode(500);
             responseResult.setErrMessage(e.getMessage());
         }

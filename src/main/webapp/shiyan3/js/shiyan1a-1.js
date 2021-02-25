@@ -1,22 +1,36 @@
 			let choose;//按键选择,1为上键,2为下键
 			let responseData;
 			let times=0;	//页面刷新次数
-			let id=1;//被试编号
+			let sub=1;//被试编号
 			let age=23;//被试年龄
 			let sex=2;//被试性别,男1,女2
 			const con = {};
-			
+
 			window.onload=function(){
 				//count();
 				//console.log(times)
+				sub=getUrlParam("sub");
+				console.log("用户编号:"+sub)
+
 				if(times==0){
-					ajax("xinlixue/count",{"name":id,"count":times});
+					ajax("xinlixue/count",{"name":sub,"count":times});
 				}
 				//data2();
-			}
-			
-			
-			function ajax(url,dataBody){
+			};
+
+			function getUrlParam(name) {
+				//构造一个含有目标参数的正则表达式对象
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg); //匹配目标参数
+				if (r != null) {
+					return unescape(r[2]);
+				} else {
+					return null; //返回参数值
+				}
+			};
+
+
+				function ajax(url,dataBody){
 				var settings = {
 					"url": "http://localhost:8080/"+url,
 					"method": "POST",
@@ -28,9 +42,8 @@
 				};
 				$.ajax(settings).done( function (response) {
 				    if(times%2==0&&times!=0){
-                        getTimesResult(id);
+                        getTimesResult(sub);
                     }
-				    times++;
 					var data=response.result
 					console.log("data2:"+data)
 					//情境=1时开一个门,情境=2时开两个门,men=1时,开上门,men=2是开下门
@@ -105,6 +118,7 @@
 						$("#b").rotate({center:["648px","350px"],animateTo: 150});
 					}
 				});
+					times++;
 				// console.log("返回结果："+responseData.toString())
 
 			}
@@ -116,7 +130,7 @@
 
 function changeChoose (choose) {
   con["times"] = times;
-  con["id"] = id;
+  con["sub"] = sub;
   con["age"] = age;
   con["sex"] = sex;
   con['choose'] = choose;
@@ -147,8 +161,8 @@ function changeChoose (choose) {
             /**
              * 这个是请求保存结果的接口
              */
-            function getTimesResult(id) {
-                console.log("getTimesResult 封装成json数据为：" + id);
+            function getTimesResult(sub) {
+                console.log("getTimesResult 封装成json数据为：" + sub);
                 var settings = {
                     "url": "http://localhost:8080/xinlixue/getTimesResult",
                     "method": "POST",
@@ -156,7 +170,7 @@ function changeChoose (choose) {
                     "headers": {
                         "Content-Type": "application/json"
                     },
-                    "data": JSON.stringify({"id":id}),
+                    "data": JSON.stringify({"id":sub}),
                 };
                 $.ajax(settings).done(function (response) {
                     alert("休息一会吧！'</br>' 你当前的积分为: "+response.result+" 分")
@@ -192,7 +206,7 @@ document.getElementById("p2").style.top = 0 + 'px'
                    saveResult(changeChoose(choose))
                   console.log("按键" + choose)
                   //每次按键后,向后台传递参数
-				  ajax("xinlixue/count",{"name":id,"count":times});
+				  ajax("xinlixue/count",{"name":sub,"count":times});
                   //刷新页面重置位置
                   //location.reload();
                 })
@@ -207,7 +221,7 @@ document.getElementById("p2").style.top = 0 + 'px'
                   console.log("按键" + choose)
 					saveResult(changeChoose(choose))
                   //每次按键后,向后台传递参数
-					ajax("xinlixue/count",{"name":id,"count":times});
+					ajax("xinlixue/count",{"name":sub,"count":times});
                   //刷新页面重置位置
                   //location.reload();
                 })
@@ -253,7 +267,7 @@ document.getElementById("p2").style.top = 0 + 'px'
 																	console.log("按键" + choose)
 																	saveResult(changeChoose(choose))
 																	//每次按键后,向后台传递参数
-																	ajax("xinlixue/count",{"name":id,"count":times});
+																	ajax("xinlixue/count",{"name":sub,"count":times});
 																	//刷新页面重置位置
 																	//location.reload();
 																})
@@ -268,7 +282,7 @@ document.getElementById("p2").style.top = 0 + 'px'
 																console.log("按键" + choose)
 																saveResult(changeChoose(choose))
 																//每次按键后,向后台传递参数
-																ajax("xinlixue/count",{"name":id,"count":times});
+																ajax("xinlixue/count",{"name":sub,"count":times});
 																//刷新页面重置位置
 																//location.reload();
 															})

@@ -93,7 +93,7 @@ public class XinLiXueService {
                 }
             }
         }
-        int up = 0;
+    /*    int up = 0;
         int down = 0;
         for(Integer peopleMove:peopleMoves){
             resultSetEntity=new ResultSetEntity();
@@ -156,21 +156,21 @@ public class XinLiXueService {
             }
             j++;
         }
-
+*/
         Collections.shuffle(resultSetEntityList);
         System.out.println("场景数量："+resultSetEntityList.size());
         return resultSetEntityList;
     }
     public void saveResult(SaveResultArg saveResultArg){
-        System.out.println(saveResultArg.toString());
+        System.out.println("saveResult:"+saveResultArg.toString());
         //获取当前对象的id值
-        Integer id=saveResultArg.getId();
+        String sub=saveResultArg.getSub();
         //获取当前对象的实验次数；
-        Integer times=saveResultArg.getTimes();
+        Integer times=saveResultArg.getTimes()-1;
         Integer choose=saveResultArg.getChoose();
         //获取当前试验次数
-        Map resultMap=xinLinXueMapper.getSaveResult(id,times);
-        ResultSetEntity resultSetEntity=getCount(id.toString(),times);
+        Map resultMap=xinLinXueMapper.getSaveResult(sub,times);
+        ResultSetEntity resultSetEntity=getCount(sub,times);
         //火灾的位置
         Integer fire=resultSetEntity.getHuozai();
         Integer age=saveResultArg.getAge();
@@ -179,32 +179,32 @@ public class XinLiXueService {
         Integer huozai=resultSetEntity.getHuozai();
         Integer qingjing=resultSetEntity.getQingjing();
         //说明数据库里面是没有结果 第一次
-        if(resultMap==null||resultMap.size()==0){
+        if(resultMap==null){
             if(times==0){
                 int res=1;
                 if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
                     res=-1;
                 }
                 //把结果存入数据库 做insert 操作
-                xinLinXueMapper.saveResult(id,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,res);
-            }else{
-                //获取前一次的数据结果
-                Map OldResultMap=xinLinXueMapper.getSaveResult(id,times-1);
-                //获取之前的分数
-                Integer oldResult=(Integer) OldResultMap.get("result");
-                if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
-                    oldResult=oldResult-1;
-                }else{
-                    oldResult=oldResult+1;
-                }
-                //把结果存入数据库 做insert 操作
-                xinLinXueMapper.saveResult(id,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,oldResult);
+                xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,res);
             }
+        }else{
+            //获取前一次的数据结果
+            Map OldResultMap=xinLinXueMapper.getSaveResult(sub,times-1);
+            //获取之前的分数
+            Integer oldResult=(Integer) OldResultMap.get("result");
+            if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
+                oldResult=oldResult-1;
+            }else{
+                oldResult=oldResult+1;
+            }
+            //把结果存入数据库 做insert 操作
+            xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,oldResult);
         }
     }
 
-    public Integer getTimesResult(Integer id){
-        Map resultMap=xinLinXueMapper.getTimesResultById(id);
+    public Integer getTimesResult(String sub){
+        Map resultMap=xinLinXueMapper.getTimesResultById(sub);
         if(resultMap==null||resultMap.size()==0){
             return 0;
         }
@@ -218,6 +218,7 @@ public class XinLiXueService {
         Integer age=userEntityArg.getAge();
         Integer sex=userEntityArg.getSex();
         int flag=xinLinXueMapper.login(sub,age,sex);
+        System.out.println("用户注册成功："+sub);
     }
 
 

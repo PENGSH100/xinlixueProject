@@ -11,7 +11,7 @@ public class SaveResultArg implements Serializable {
     private String  sex;
     private Integer choose;
     private Integer age;
-    private Integer id;
+    private String sub;
     private Integer times;
 
     public Integer getTimes() {
@@ -45,12 +45,12 @@ public class SaveResultArg implements Serializable {
         this.age = age;
     }
 
-    public Integer getId() {
-        return id;
+    public String getSub() {
+        return sub;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSub(String sub) {
+        this.sub = sub;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class SaveResultArg implements Serializable {
                 "sex='" + sex + '\'' +
                 ", choose=" + choose +
                 ", age=" + age +
-                ", id=" + id +
+                ", sub=" + sub +
                 ", times=" + times +
                 '}';
     }

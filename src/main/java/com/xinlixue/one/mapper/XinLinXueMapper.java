@@ -19,11 +19,12 @@ public interface XinLinXueMapper{
 
     @Select("select * from org_employee_user")
     List<Map> getAll();
-    @Select("select times,result from user_result where id=#{id} and times=#{times}")
-    Map getSaveResult(@Param("id") Integer id,@Param("times") Integer times);
+    @Select("select times,result from user_result where sub=#{sub} and times=#{times}")
+    Map getSaveResult(@Param("sub") String sub,@Param("times") Integer times);
 
-    @Insert("INSERT INTO user_result (id,age,sex,times,choose,fangxiang,huozai,result) values (${id},${times},${result})")
-    int saveResult(@Param("id") Integer id,
+    @Insert("INSERT INTO user_result (sub,age,sex,times,choose,fangxiang,huozai,result) " +
+            "values (#{sub},${age},${sex},${times},${choose},${fangxiang},${huozai},${result})")
+    int saveResult(@Param("sub") String id,
                    @Param("age") Integer age,
                    @Param("sex") Integer sex,
                    @Param("times") Integer times,
@@ -31,13 +32,13 @@ public interface XinLinXueMapper{
                    @Param("fangxiang") Integer fangxiang,
                    @Param("huozai") Integer huozai,
                    @Param("result") Integer result);
-    @Insert("Update user_result set id=#{id} , times=#{times} , result=#{result}")
-    int updateResult(@Param("id") Integer id,
+    @Insert("Update user_result set sub=#{sub} , times=#{times} , result=#{result}")
+    int updateResult(@Param("sub") Integer sub,
                    @Param("times") Integer times,
                    @Param("result") Integer result);
 
-    @Select("select id,times,result from user_result where id=#{id}")
-    Map getTimesResultById(@Param("id") Integer id);
+    @Select("select id,times,result from user_result where sub=#{sub}")
+    Map getTimesResultById(@Param("sub") String sub);
 
     @Insert("insert into org_employee_user (sub,age,sex) values ( #{sub},${age},${sex})")
     int login(@Param("sub") String sub,

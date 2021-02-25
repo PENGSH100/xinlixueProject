@@ -25,10 +25,11 @@ public class XinLinXueMapperTest {
 
     @Test
     public void getAll() {
-        System.out.println(xinLinXueMapper);
+        //System.out.println(xinLinXueMapper);
         //List<Map> allMap=xinLinXueMapper.getAll();
         //System.out.println(allMap.size());
-        xinLinXueMapper.login("pengsh",13,2);
+       // xinLinXueMapper.login("pengsh",13,2);
+        System.out.println(xinLinXueMapper.getSaveResult("pengsh",13));
 
 
     }
