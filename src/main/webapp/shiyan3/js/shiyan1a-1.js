@@ -7,15 +7,13 @@
 			const con = {};
 
 			window.onload=function(){
-				//count();
-				//console.log(times)
+
 				sub=getUrlParam("sub");
 				console.log("用户编号:"+sub)
 
 				if(times==0){
 					ajax("xinlixue/count",{"name":sub,"count":times});
 				}
-				//data2();
 			};
 
 			function getUrlParam(name) {
@@ -40,8 +38,10 @@
 					},
 					"data": JSON.stringify(dataBody),
 				};
+
+
 				$.ajax(settings).done( function (response) {
-				    if(times%2==0&&times!=0){
+				    if(times%2==0 && times!=0){
                         getTimesResult(sub);
                     }
 					var data=response.result

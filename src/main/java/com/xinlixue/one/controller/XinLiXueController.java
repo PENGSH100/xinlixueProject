@@ -59,7 +59,6 @@ public class XinLiXueController {
     public HttpResponseResult<JSON> saveResult(@RequestBody String bodyJson) {
         HttpResponseResult responseResult = new HttpResponseResult();
         try {
-            System.out.println("saveResult："+bodyJson);
             SaveResultArg saveResultArg= JSON.parseObject(bodyJson, SaveResultArg.class);
             xinLiXueService.saveResult(saveResultArg);
             responseResult.setResult(JSON.toJSON(saveResultArg));
@@ -77,7 +76,8 @@ public class XinLiXueController {
         try {
             System.out.println("getTimesResult："+bodyJson);
             SaveResultArg saveResultArg= JSON.parseObject(bodyJson, SaveResultArg.class);
-            Integer res=xinLiXueService.getTimesResult(saveResultArg.getSub());
+            Integer res=xinLiXueService.getTimesResult(saveResultArg.getSub(),saveResultArg.getTimes());
+            System.out.println("当前分数："+res);
             responseResult.setResult(JSON.toJSON(res));
         }catch (Exception e){
             System.out.println("获取结果次数出错了。。。。。。。。。。"+e.getMessage());

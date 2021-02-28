@@ -168,9 +168,11 @@ public class XinLiXueService {
         //获取当前对象的实验次数；
         Integer times=saveResultArg.getTimes()-1;
         Integer choose=saveResultArg.getChoose();
+        System.out.println(times+"===================================");
         //获取当前试验次数
-        Map resultMap=xinLinXueMapper.getSaveResult(sub,times);
+        Map resultMap=xinLinXueMapper.getSaveResult(sub,times-1);
         ResultSetEntity resultSetEntity=getCount(sub,times);
+        System.out.println("resultSetEntity:"+resultSetEntity.toString());
         //火灾的位置
         Integer fire=resultSetEntity.getHuozai();
         Integer age=saveResultArg.getAge();
@@ -185,26 +187,33 @@ public class XinLiXueService {
                 if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
                     res=-1;
                 }
+                System.out.println("1：保存数据库===============================");
                 //把结果存入数据库 做insert 操作
-                xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,res);
+                xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,res,res);
+            } else{
+                System.out.println("---1：保存数据库===============================");
             }
         }else{
+            int score=1;
+            System.out.println("2：保存数据库===============================");
             //获取前一次的数据结果
             Map OldResultMap=xinLinXueMapper.getSaveResult(sub,times-1);
             //获取之前的分数
             Integer oldResult=(Integer) OldResultMap.get("result");
             if(choose.equals(fire)){//如果选择和火灾的位置相等 就表示减一分
+                score=-1;
                 oldResult=oldResult-1;
             }else{
                 oldResult=oldResult+1;
             }
+            System.out.println("3：保存数据库===============================");
             //把结果存入数据库 做insert 操作
-            xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,oldResult);
+            xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,oldResult,score);
         }
     }
 
-    public Integer getTimesResult(String sub){
-        Map resultMap=xinLinXueMapper.getTimesResultById(sub);
+    public Integer getTimesResult(String sub,Integer times){
+        Map resultMap=xinLinXueMapper.getTimesResultById(sub,times-1);
         if(resultMap==null||resultMap.size()==0){
             return 0;
         }
