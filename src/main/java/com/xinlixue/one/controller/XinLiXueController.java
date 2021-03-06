@@ -32,7 +32,7 @@ public class XinLiXueController {
     public HttpResponseResult<String> clear() {
         HttpResponseResult responseResult = new HttpResponseResult();
         responseResult.setErrCode(200);
-        responseResult.setResult("启动成功");
+        responseResult.setResult("xinlixue 启动成功..........");
 
         return responseResult;
     }

@@ -45,5 +45,9 @@ public interface XinLinXueMapper{
     int login(@Param("sub") String sub,
               @Param("age") Integer age,
               @Param("sex") Integer sex);
-
+    @Insert("insert into user_two_result (sub,changes,choose,result) values ( #{sub},${change},${choose},${result})")
+    int saveResultTwo(@Param("sub") String sub,
+              @Param("change") Integer change,
+              @Param("choose") Integer choose,
+              @Param("result") Integer result);
 }
