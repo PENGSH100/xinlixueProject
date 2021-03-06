@@ -1,5 +1,6 @@
 package com.xinlixue.one.service;
 
+import com.xinlixue.one.entity.SaveResultArg;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,17 @@ public class XinLiXueServiceTest {
     @Test
     public void getBackValue() {
         xinLiXueService.getBackValue( );
+    }
+    @Test
+    public void testSaveResult(){
+        SaveResultArg saveResultArg=new SaveResultArg();
+        saveResultArg.setAge(21);
+        saveResultArg.setSex("2");
+        saveResultArg.setChoose(1);
+        saveResultArg.setSub("hh");
+        saveResultArg.setTimes(1);
+        xinLiXueService.saveResult(saveResultArg);
+
+
     }
 }

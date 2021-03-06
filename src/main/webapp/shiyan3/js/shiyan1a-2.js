@@ -44,6 +44,12 @@
 					}
 					var data=response.result;
 					console.log("data2:"+data);
+					$("#cover").show();
+					$("#a").rotate({center:["658px","154px"],animateTo: 0});
+					$("#b").rotate({center:["658px","402px"],animateTo: 0});
+					$("#cover").delay(800).hide(0);
+
+
 					//情境=1时开一个门,情境=2时开两个门,men=1时,开上门,men=2是开下门
 					if(data.qingjing==1 && data.peoples==1 && data.fangxiang==1){
 						console.log("无选择性情境,1个小人向上");
@@ -237,7 +243,7 @@ $(".p1").animate({ left: "500px" }, 500,function(){
 	          if (e && e.keyCode == 70) { // 按F键 
 	            //要做的事情
 	            $(".p2").animate({ left: "445px", top: "-180px" }, 1000, function () {
-	              $(".p2").animate({ left: "545px" }, 500, function () {
+	              $(".p2").animate({ left: "545px" }, 1000, function () {
                       //后台要记录的按键反应数据
 					  choose = 1;
 					  saveResult(changeChoose(choose));
@@ -252,7 +258,7 @@ $(".p1").animate({ left: "500px" }, 500,function(){
 	          if (e && e.keyCode == 74) { // 按J键
 	            //要做的事情
 	            $(".p2").animate({ left: "445px", top: "190px" }, 1000, function () {
-	              $(".p2").animate({ left: "545px" }, 500, function () {
+	              $(".p2").animate({ left: "545px" }, 1000, function () {
                       //后台要记录的按键反应数据
 					  choose = 2;
 					  saveResult(changeChoose(choose));
@@ -289,7 +295,7 @@ function OneDown(){
 		  if (e && e.keyCode == 70) { // 按F键 
 		    //要做的事情
 		    $(".p2").animate({ left: "445px", top: "-180px" }, 1000, function () {
-		      $(".p2").animate({ left: "545px" }, 500, function () {
+		      $(".p2").animate({ left: "545px" }, 1000, function () {
 				  //后台要记录的按键反应数据
 				  choose = 1;
 				  saveResult(changeChoose(choose));
@@ -304,7 +310,7 @@ function OneDown(){
 		  if (e && e.keyCode == 74) { // 按J键
 		    //要做的事情
 		    $(".p2").animate({ left: "445px", top: "190px" }, 1000, function () {
-		      $(".p2").animate({ left: "545px" }, 500, function () {
+		      $(".p2").animate({ left: "545px" }, 1000, function () {
 				  //后台要记录的按键反应数据
 				  choose = 2;
 				  saveResult(changeChoose(choose));
@@ -1478,7 +1484,7 @@ function TC12(){
 				$.ajax(settings).done(function (response) {
 					alert("休息一会吧！'</br>' 你当前的积分为: "+response.result+" 分")
 					console.log("getTimesResult save result success"+response.toString());
-
+					return;
 				});
 
 

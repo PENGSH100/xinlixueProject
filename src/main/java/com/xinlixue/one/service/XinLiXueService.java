@@ -81,6 +81,7 @@ public class XinLiXueService {
                         resultSetEntity.setFangxiang(peopleMove);
                         resultSetEntity.setHuozai(fireUpMoves.get(up));
                         up=up+1;
+                        // qbNG)vQ1kl%(
                     }else{
                         resultSetEntity.setQingjing(qinjin);
                         resultSetEntity.setPeoples(people);

@@ -1,74 +1,92 @@
 <!DOCTYPE html>
 <html id='html'>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<style>
-		.body{
-			width: 900px;
-			height: 543px;
-			position: relative;
-			margin: 0 auto;
-			background-image: url(img/kk.jpg);
-			background-size: cover;
-		}
-		.people{
-			width: 250px;
-			height: 110px;
-			position: relative;
-			top: 215px;
-			left: 50px;
-			border: 1px solid red;
-		}
-		.img{
-			width:38px;
-			height: 110px;
-			position: relative;
-			top: 0px;
-			z-index: 10;
-		}
-		.p1,.p2,.p3,.p4,.p5{
-			position: relative;
-		}
-		.svg{
-			position: relative;
-			top: -118px;
-		}
-	</style>
-	<body>
-		<div class="body">
-			<div class="people">
-				<div class="p5" id="p5" style="width: 38px;height: 100px;display: inline-block;border: 1px solid black;">
-					<img class="img" src="img/dd.png"/>
-				</div>
-				<div class="p4" id="p4" style="width: 38px;height: 100px;display: inline-block;border: 1px solid black;">
-					<img class="img" src="img/dd.png"/>
-				</div>
-				<div class="p3" id="p3" style="width: 38px;height: 100px;display: inline-block;border: 1px solid black;">
-					<img class="img" src="img/dd.png"/>
-				</div>
-				<div class="p2" id="p2" style="width: 38px;height: 100px;display: inline-block;border: 1px solid black;">
-					<img class="img" src="img/dd.png"/>
-				</div>
-				<div  class="p1" id="p1" style="width: 38px;height: 100px;display: inline-block;border: 1px solid black;">
-					<img  class="img" src="img/dd.png"/>
-				</div>
-			</div>
-			<svg width="1200" height="800" class="svg">
-			//门1
-			  <line id="a"  x1="658px" x2="658px" y1="34px" y2="154px" stroke="red" fill="transparent" stroke-width="5"></line>
-			  //门2
-			  <line id="b" x1="658px" x2="658px" y1="402px" y2="522px" stroke="red" fill="transparent" stroke-width="5"/></line>
-			</svg>
-			<div style="width: 228px;height: 120px;position: relative;left: 660px;top: -889px;background: #BFBFBF;z-index: 15;"></div>
-			
-			<div style="width: 228px;height: 120px;position: relative;left: 660px;top: -641px;background: #BFBFBF;z-index: 15;"></div>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<style>
+	.body{
+		width: 900px;
+		height: 543px;
+		position: relative;
+		margin: 0 auto;
+		background-image: url(img/kk.jpg);
+		background-size: cover;
+	}
+	#cover{
+		width: 900px;
+		height: 543px;
+		border: 2px solid white;
+		position: relative;
+		margin: 0 auto;
+		top: -543px;
+		background-color: darkgrey;
+		z-index: 100;
+	}
+	.jia{
+		position: relative;
+		left: 400px;
+		top: 221px;
+	}
+	.people{
+		width: 250px;
+		height: 110px;
+		position: relative;
+		top: 215px;
+		left: 50px;
+
+	}
+	.img{
+		width:38px;
+		height: 110px;
+		position: relative;
+		top: 0px;
+		z-index: 10;
+	}
+	.p1,.p2,.p3,.p4,.p5{
+		position: relative;
+	}
+	.svg{
+		position: relative;
+		top: -118px;
+	}
+</style>
+<body>
+<div class="body">
+	<div class="people">
+		<div class="p5" id="p5" style="width: 38px;height: 100px;display: inline-block;">
+			<img class="img" src="img/dd.png"/>
 		</div>
-	</body>
-	<script type="text/javascript" src="js/jquery-3.0.0.js"></script>
-	<script type="text/javascript" src="js/jQueryRotate.js"></script>
-	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://mockjs.com/dist/mock.js"></script>
-	<script src="js/shiyan1a-2.js"></script>
+		<div class="p4" id="p4" style="width: 38px;height: 100px;display: inline-block;">
+			<img class="img" src="img/dd.png"/>
+		</div>
+		<div class="p3" id="p3" style="width: 38px;height: 100px;display: inline-block;">
+			<img class="img" src="img/dd.png"/>
+		</div>
+		<div class="p2" id="p2" style="width: 38px;height: 100px;display: inline-block;">
+			<img class="img" src="img/dd.png"/>
+		</div>
+		<div  class="p1" id="p1" style="width: 38px;height: 100px;display: inline-block;">
+			<img  class="img" src="img/dd.png"/>
+		</div>
+	</div>
+	<svg width="1200" height="800" class="svg">
+		//门1
+		<line id="a"  x1="658px" x2="658px" y1="34px" y2="154px" stroke="red" fill="transparent" stroke-width="5"></line>
+		//门2
+		<line id="b" x1="658px" x2="658px" y1="402px" y2="522px" stroke="red" fill="transparent" stroke-width="5"/></line>
+	</svg>
+	<div style="width: 228px;height: 120px;position: relative;left: 660px;top: -889px;background: #BFBFBF;z-index: 15;"></div>
+
+	<div style="width: 228px;height: 120px;position: relative;left: 660px;top: -641px;background: #BFBFBF;z-index: 15;"></div>
+</div>
+<div id="cover">
+	<img class="jia" src="img/jia.svg" width="100px" height="100px"/>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery-3.0.0.js"></script>
+<script type="text/javascript" src="js/jQueryRotate.js"></script>
+<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://mockjs.com/dist/mock.js"></script>
+<script src="js/shiyan1a-2.js"></script>
 </html>
