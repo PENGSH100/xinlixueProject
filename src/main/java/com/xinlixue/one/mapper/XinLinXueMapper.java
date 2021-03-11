@@ -22,8 +22,8 @@ public interface XinLinXueMapper{
     @Select("select times,result from user_result where sub=#{sub} and times=#{times}")
     Map getSaveResult(@Param("sub") String sub,@Param("times") Integer times);
 
-    @Insert("INSERT INTO user_result (sub,age,sex,times,choose,fangxiang,huozai,result,score) " +
-            "values (#{sub},${age},${sex},${times},${choose},${fangxiang},${huozai},${result},${score})")
+    @Insert("INSERT INTO user_result (sub,age,sex,times,choose,fangxiang,huozai,result,score,qingjing) " +
+            "values (#{sub},${age},${sex},${times},${choose},${fangxiang},${huozai},${result},${score},${qingjing})")
     int saveResult(@Param("sub") String id,
                    @Param("age") Integer age,
                    @Param("sex") Integer sex,
@@ -32,6 +32,7 @@ public interface XinLinXueMapper{
                    @Param("fangxiang") Integer fangxiang,
                    @Param("huozai") Integer huozai,
                    @Param("result") Integer result,
+                   @Param("qingjing") Integer qingjing,
                    @Param("score") Integer score);
     @Insert("Update user_result set sub=#{sub} , times=#{times} , result=#{result}")
     int updateResult(@Param("sub") Integer sub,

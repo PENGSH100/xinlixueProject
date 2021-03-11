@@ -55,10 +55,10 @@ public class XinLiXueService {
 
         List<ResultSetEntity> resultSetEntityList=new ArrayList<>();
         // 选择情景
-        List<Integer> qingjings= Arrays.asList(1);
+        List<Integer> qingjings= Arrays.asList(1,2);
         Collections.shuffle(qingjings);
         //小人的数量
-        List<Integer> peoples= Arrays.asList(1);
+        List<Integer> peoples= Arrays.asList(1,2,3,4);
         Collections.shuffle(peoples);
         //小人移动的方向20次 10次向上 10次向下
         List<Integer> peopleMoves = Arrays.asList(1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2);
@@ -93,7 +93,7 @@ public class XinLiXueService {
                 }
             }
         }
-    /*    int up = 0;
+        int up = 0;
         int down = 0;
         for(Integer peopleMove:peopleMoves){
             resultSetEntity=new ResultSetEntity();
@@ -156,7 +156,7 @@ public class XinLiXueService {
             }
             j++;
         }
-*/
+
         Collections.shuffle(resultSetEntityList);
         System.out.println("场景数量："+resultSetEntityList.size());
         return resultSetEntityList;
@@ -189,7 +189,7 @@ public class XinLiXueService {
                 }
                 System.out.println("1：保存数据库===============================");
                 //把结果存入数据库 做insert 操作
-                xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,res,res);
+                xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,res,res,qingjing);
             } else{
                 System.out.println("---1：保存数据库===============================");
             }
@@ -208,7 +208,7 @@ public class XinLiXueService {
             }
             System.out.println("3：保存数据库===============================");
             //把结果存入数据库 做insert 操作
-            xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,oldResult,score);
+            xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,oldResult,score,qingjing);
         }
     }
 
