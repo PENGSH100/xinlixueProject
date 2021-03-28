@@ -23,10 +23,42 @@
 	<script type="text/javascript" src="js/jQueryRotate.js"></script>
 	<script type="text/javascript">
 		window.onload=function(){
-			$(".bb").animate({left:"500px",top:"150px"},1000,function(){
-				$(".bb").animate({left:"660px",top:"150px"},1000)
-				$(".bb").hide(200);
-			})
+			/**
+			 *
+			 * 可以运行当前页
+			 */
+		getTimesResult("linjing",220);
+		}
+		function getTimesResult(sub,times) {
+			console.log("getTimesResult 封装成json数据为：" + sub);
+			var settings = {
+				"url": "http://localhost:8080/xinlixue/getTimesResult",
+				"method": "POST",
+				"timeout": 0,
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"data": JSON.stringify({"sub":sub,"times":times}),
+			};
+			$.ajax(settings).done(function (response) {
+				document.execCommand("stop");
+				if(times==220){
+					alert("实验结束! 您的的得分是："+response.result);
+				}else{
+					alert("休息一会吧!")
+				}
+
+				$(".result").html(response.result);
+				$("#result").show();
+				$(".continu").click(function(){
+					$("#result").hide(0);
+					//可以在这个方法和show方法里，向后台传一个参数，用来控制是否暂停数据传输
+				})
+				console.log("getTimesResult save result success"+response.toString());
+				return;
+			});
+
+
 		}
 	</script>
 	<body>

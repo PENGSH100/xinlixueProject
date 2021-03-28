@@ -51,11 +51,13 @@ public class XinliXueTwoService {
         String sub=saveResultTwoArg.getSub();
         Integer choose=saveResultTwoArg.getChoose();
         Integer change=saveResultTwoArg.getChange();
+        Integer age=saveResultTwoArg.getAge();
+        Integer sex=saveResultTwoArg.getSex();
         int result=0;
         if(change.equals(choose)){
             result=1;
         }
-        xinLinXueMapper.saveResultTwo(sub,change,choose,result);
+        xinLinXueMapper.saveResultTwo(sub,change,choose,result,sex,age);
 
     }
 

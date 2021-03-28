@@ -10,8 +10,14 @@
 		height: 543px;
 		position: relative;
 		margin: 0 auto;
-		background-image: url(img/kk.jpg);
+		background-image: url(img/bg.jpg);
 		background-size: cover;
+	}
+	#body{
+		//padding: 50px;
+		position: fixed;
+		left: 15%;
+		top: 10%;
 	}
 	#cover{
 		width: 900px;
@@ -20,7 +26,7 @@
 		position: relative;
 		margin: 0 auto;
 		top: -543px;
-		background-color: darkgrey;
+		background-color: #D9D9D9;
 		z-index: 100;
 	}
 	.jia{
@@ -32,7 +38,7 @@
 		width: 250px;
 		height: 110px;
 		position: relative;
-		top: 215px;
+		top: 220px;
 		left: 50px;
 
 	}
@@ -51,38 +57,57 @@
 		top: -118px;
 	}
 </style>
-<body>
+<body id="body">
 <div class="body">
 	<div class="people">
 		<div class="p5" id="p5" style="width: 38px;height: 100px;display: inline-block;">
-			<img class="img" src="img/dd.png"/>
+			<img class="img img5" src="img/people1.png"/>
+			<span class="w5" style="position: relative;top: -75%;left: 30%;z-index: 10;"></span>
 		</div>
 		<div class="p4" id="p4" style="width: 38px;height: 100px;display: inline-block;">
-			<img class="img" src="img/dd.png"/>
+			<img class="img img4" src="img/people1.png"/>
+			<span class="w4" style="position: relative;top: -75%;left: 30%;z-index: 10;"></span>
 		</div>
 		<div class="p3" id="p3" style="width: 38px;height: 100px;display: inline-block;">
-			<img class="img" src="img/dd.png"/>
+			<img class="img img3" src="img/people1.png"/>
+			<span class="w3" style="position: relative;top: -75%;left: 30%;z-index: 10;"></span>
 		</div>
 		<div class="p2" id="p2" style="width: 38px;height: 100px;display: inline-block;">
-			<img class="img" src="img/dd.png"/>
+			<img class="img img2" src="img/people1.png"/>
+			<span class="w2" style="position: relative;top: -75%;left: 30%;z-index: 10;"></span>
 		</div>
 		<div  class="p1" id="p1" style="width: 38px;height: 100px;display: inline-block;">
-			<img  class="img" src="img/dd.png"/>
+			<img class="img img1" src="img/people1.png"/>
+			<span class="w1" style="position: relative;top: -75%;left: 30%;z-index: 10;"></span>
 		</div>
+		<img id="question" src="img/question.png" style="width: 30px;height: 30px;position: relative;left: 45%;top: -50%;display: none;" />
 	</div>
 	<svg width="1200" height="800" class="svg">
 		//门1
-		<line id="a"  x1="658px" x2="658px" y1="34px" y2="154px" stroke="red" fill="transparent" stroke-width="5"></line>
+		<line id="a"  x1="658px" x2="658px" y1="34px" y2="154px" stroke="#BE905C" fill="transparent" stroke-width="10"></line>
 		//门2
-		<line id="b" x1="658px" x2="658px" y1="402px" y2="522px" stroke="red" fill="transparent" stroke-width="5"/></line>
+		<line id="b" x1="658px" x2="658px" y1="402px" y2="522px" stroke="#BE905C" fill="transparent" stroke-width="10"/></line>
 	</svg>
-	<div style="width: 228px;height: 120px;position: relative;left: 660px;top: -889px;background: #BFBFBF;z-index: 15;"></div>
+	<div style="width: 228px;height: 122px;position: relative;left: 660px;top: -889px;background: #BFBFBF;z-index: 15;">
+		<img src="img/tongdao.png" width="100px" style="position: relative;top: 30%;left: 30%;"/>
+	</div>
 
-	<div style="width: 228px;height: 120px;position: relative;left: 660px;top: -641px;background: #BFBFBF;z-index: 15;"></div>
+	<div style="width: 228px;height: 122px;position: relative;left: 660px;top: -641px;background: #BFBFBF;z-index: 15;">
+		<img src="img/tongdao.png" width="100px" style="position: relative;top: 30%;left: 30%;"/>
+	</div>
+	<img src="img/fire.gif" width="100px" height="100px" style="position: relative;top: -145%;left: 3%;"/>
+	<img src="img/fire.gif" width="150px" height="150px" style="position: relative;top: -142%;left: 6%;"/>
+	<img src="img/fire.gif" width="100px" height="100px" style="position: relative;top: -220%;left: -26%;"/>
+	<img src="img/fire.gif" width="150px" height="150px" style="position: relative;top: -218%;left: -23%;"/>
 </div>
 <div id="cover">
-	<img class="jia" src="img/jia.svg" width="100px" height="100px"/>
+<!--	<img class="jia" src="img/jia.svg" width="100px" height="100px"/>-->
+	<p style="position: relative;top: 40%;left: 40%;font-size:30px ;font-family: "楷体";">准备中...</p>
 </div>
+<!-- <div id="result" style="width: 300px;height: 200px;border: 1px solid black;position: relative;left: 40%;top: -400px;display: none;">
+	<p class="result"></p>
+	<button class="continu"></button>
+</div> -->
 </body>
 <script type="text/javascript" src="js/jquery-3.0.0.js"></script>
 <script type="text/javascript" src="js/jQueryRotate.js"></script>

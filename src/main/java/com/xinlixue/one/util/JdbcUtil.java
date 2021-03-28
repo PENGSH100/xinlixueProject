@@ -18,7 +18,7 @@ public class JdbcUtil {
 
     public static Connection getConn() throws Exception{
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/xinlixue?characterEncoding=utf8&useSSL=false", "root", "kpl8GCxTQ*@Mq1BK");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/xinlixue?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true", "root", "root");
 
         return connection;
     }

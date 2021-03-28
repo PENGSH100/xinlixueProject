@@ -1,0 +1,58 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html">
+	<title>登录游戏</title>
+	<style>
+		.bg{
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			width: 100%;
+			height: 100%;
+			background-image: url(./img/loginbg.jpg);
+			background-size: cover;
+
+		}
+		.form{
+			width: 300px;
+			height: 200px;
+			position: relative;
+			top:50px;
+			left: 350px;
+			font-family: "楷体";
+		}
+		.reset{
+			position: relative;
+			left: 25%;
+		}
+	</style>
+</head>
+<body>
+<div class="bg">
+	<div class="form">
+
+		<form name = "register_form" action="/xinlixue/login" method="post">
+			编号:<input type="text" name="sub" maxlength="20" id="sub"><br><br>
+			年龄:<input type="text" name="age" maxlength="20" id="age"><br><br>
+			性别:<input type="text" name="sex" maxlength="20" id="sex"><br><br>
+			<br /><br />
+			<a id="href" href="project.html">
+				<input name = "Submit" type = "button"   value = "开始" onclick = login()>
+			</a>
+
+
+		</form>
+	</div>
+
+</div>
+<script type="text/javascript" src="js/jquery-3.0.0.js"></script>
+<script type="text/javascript" src="js/jQueryRotate.js"></script>
+<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/login.js"> </script>
+</body>
+</html>

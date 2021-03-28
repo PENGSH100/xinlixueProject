@@ -1,0 +1,2 @@
+1：当mysql连接不上时 win+r cmd 进入dos命令 登录mysql客户端（mysql -u root -p）密码：root，
+2：设置mysql的时区：set global time_zone = '+8:00';和刷新权限：flush privileges;

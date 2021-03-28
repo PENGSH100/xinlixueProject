@@ -9,5 +9,8 @@
         <module name="shiyanProject" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="shiyanProject" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

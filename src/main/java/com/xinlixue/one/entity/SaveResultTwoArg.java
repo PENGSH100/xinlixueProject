@@ -8,8 +8,26 @@ package com.xinlixue.one.entity;
 public class SaveResultTwoArg {
     private Integer choose;
     private Integer change;
+    private Integer age;
+    private Integer sex;
     private String sub;
     private Integer times;
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
 
     public Integer getChoose() {
         return choose;
@@ -41,5 +59,17 @@ public class SaveResultTwoArg {
 
     public void setTimes(Integer times) {
         this.times = times;
+    }
+
+    @Override
+    public String toString() {
+        return "SaveResultTwoArg{" +
+                "choose=" + choose +
+                ", change=" + change +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", sub='" + sub + '\'' +
+                ", times=" + times +
+                '}';
     }
 }
