@@ -3,8 +3,8 @@
 			   sub=register_form.sub.value;
 			   age=register_form.age.value;
 			   sex=register_form.sex.value;
-			   document.getElementById("href").href='allot.html?sub='+sub+'&age='+age+'&sex='+sex;
-			   console.log("sub:"+sub+" age:"+age+" sex:"+sex)
+			   document.getElementById("href").href='allot.html?sub='+sub;
+			   console.log("sub:"+sub+" age:"+age+" sex:"+sex);
 
 				ajax({"sub":sub,"age":age,"sex":sex});
 			}

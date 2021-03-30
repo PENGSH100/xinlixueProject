@@ -270,24 +270,16 @@
             var d1=random[3];
             var e1=random[4];
 
-            $("#f"+a1).show();
-            $("#f"+b1).show();
-            $("#f"+c1).show();
-            $("#f"+d1).show();
-            $("#f"+e1).show();
+            $("#f"+a1).show(5000);
+            $("#f"+b1).show(5000);
+            $("#f"+c1).show(5000);
+            $("#f"+d1).show(5000);
+            $("#f"+e1).show(5000);
             document.getElementById("f"+a1).style.backgroundColor = color[0];
             document.getElementById("f"+b1).style.backgroundColor = color[1];
             document.getElementById("f"+c1).style.backgroundColor = color[2];
             document.getElementById("f"+d1).style.backgroundColor = color[3];
             document.getElementById("f"+e1).style.backgroundColor = color[4];
-           /* document.onkeydown = function (event) {
-                var e = event || window.event || arguments.callee.caller.arguments[0];
-                if (e && e.keyCode == 70) { // 按F键
-                    $("#cover1").show();
-                    $("#cover1").delay(500).hide(0);
-                    xianshiTwo(random,color,changeColorList,change);
-                }
-            };*/
             setTimeout(function () {
                 $("#cover1").show();
                 $("#cover1").delay(5000).hide(0);

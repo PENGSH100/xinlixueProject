@@ -13,6 +13,7 @@ public class SaveResultArg implements Serializable {
     private Integer age;
     private String sub;
     private Integer times;
+    private String costtime;
 
     public Integer getTimes() {
         return times;
@@ -53,14 +54,23 @@ public class SaveResultArg implements Serializable {
         this.sub = sub;
     }
 
+    public String getCosttime() {
+        return costtime;
+    }
+
+    public void setCosttime(String costtime) {
+        this.costtime = costtime;
+    }
+
     @Override
     public String toString() {
         return "SaveResultArg{" +
                 "sex='" + sex + '\'' +
                 ", choose=" + choose +
                 ", age=" + age +
-                ", sub=" + sub +
+                ", sub='" + sub + '\'' +
                 ", times=" + times +
+                ", costtime='" + costtime + '\'' +
                 '}';
     }
 }

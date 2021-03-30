@@ -20,6 +20,7 @@ public class XinLiXueServiceTest {
 
     @Test
     public void getBackValue() {
-        xinLiXueService.getBackValue( );
+       // xinLiXueService.getBackValue( );
+        System.out.println(xinLiXueService.getTimesResult("pengsh",220));
     }
 }
