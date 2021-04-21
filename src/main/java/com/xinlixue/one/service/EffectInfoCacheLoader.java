@@ -25,7 +25,7 @@ XinLiXueService xinLiXueService;
     @Override
     public CacheEntity load(@NonNull String key) throws Exception {
         CacheEntity cacheEntity=new CacheEntity();
-        List<ResultSetEntity> resultSetEntityList=xinLiXueService.getBackValue();
+        List<ResultSetEntity> resultSetEntityList=xinLiXueService.getBackValueThree();
         cacheEntity.setKey(key);
         cacheEntity.setResultSetEntityList(resultSetEntityList);
         return cacheEntity;

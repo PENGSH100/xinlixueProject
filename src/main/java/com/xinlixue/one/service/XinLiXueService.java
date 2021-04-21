@@ -41,7 +41,7 @@ public class XinLiXueService {
         if(cacheEntity==null){
             System.out.println("没有使用缓存");
             cacheEntity=new CacheEntity();
-            List<ResultSetEntity> resultSetEntityList=getBackValue();
+            List<ResultSetEntity> resultSetEntityList=getBackValueThree();
             cacheEntity.setResultSetEntityList(resultSetEntityList);
             cacheEntity.setKey(key);
             this.batchCaffCalCache.put(key,cacheEntity);
@@ -192,6 +192,158 @@ public class XinLiXueService {
         System.out.println("场景数量："+resultSetEntityList.size());
         return resultSetEntityList;
     }
+    public List<ResultSetEntity> getBackValueThree(){
+
+        List<ResultSetEntity> resultSetEntityList=new ArrayList<>();
+        // 选择情景
+        List<Integer> qingjings= Arrays.asList(1,2);
+        Collections.shuffle(qingjings);
+        //小人的数量
+        List<Integer> peoples= Arrays.asList(1,2,3,4);
+        Collections.shuffle(peoples);
+        //小人移动的方向20次 10次向上 10次向下
+        List<Integer> peopleMoves = Arrays.asList(1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2);
+        Collections.shuffle(peopleMoves);
+        //火灾分布的情况
+        //火灾向上分布
+        List<Integer> fireUpMoves = Arrays.asList(1, 2, 1, 2, 1, 2, 1, 2, 1, 2);
+        Collections.shuffle(fireUpMoves);
+        //将数据写入数据库 用于下次调用
+        ResultSetEntity resultSetEntity=null;
+        for(Integer qinjin:qingjings){
+            for(Integer people:peoples){
+                int up = 0;
+                int down = 0;
+                for(Integer peopleMove:peopleMoves){
+                    resultSetEntity=new ResultSetEntity();
+                    if(peopleMove==1){
+                        resultSetEntity.setQingjing(qinjin);
+                        resultSetEntity.setPeoples(people);
+                        resultSetEntity.setFangxiang(peopleMove);
+                        resultSetEntity.setHuozai(fireUpMoves.get(up));
+                        up=up+1;
+                    }else{
+                        resultSetEntity.setQingjing(qinjin);
+                        resultSetEntity.setPeoples(people);
+                        resultSetEntity.setFangxiang(peopleMove);
+                        resultSetEntity.setHuozai(fireUpMoves.get(down));
+                        down=down+1;
+                    }
+                    resultSetEntityList.add(resultSetEntity);
+
+                }
+            }
+        }
+        //基线条件 没有人员移动
+        int up = 0;
+        int down = 0;
+        for(Integer peopleMove:peopleMoves){
+            resultSetEntity=new ResultSetEntity();
+            resultSetEntity.setQingjing(3);
+            resultSetEntity.setPeoples(0);
+            resultSetEntity.setFangxiang(peopleMove);
+            resultSetEntity.setHuozai(1);
+            up=up+1;
+            resultSetEntityList.add(resultSetEntity);
+        }
+        // 选择情景
+        List<Integer> qingjing2= Arrays.asList(4,5);
+        Collections.shuffle(qingjing2);
+        //小人的数量
+        List<Integer> peoples2= Arrays.asList(1,2,3,4);
+        Collections.shuffle(peoples2);
+        //小人移动的方向20次 10次向上 10次向下
+        List<Integer> peopleMoves2 = Arrays.asList(1, 2);
+        Collections.shuffle(peopleMoves2);
+        //火灾分布的情况
+        //火灾向上分布
+        List<Integer> fireUpMoves2 = Arrays.asList(1, 2);
+        Collections.shuffle(fireUpMoves2);
+        ResultSetEntity r3=null;
+        for(int qinjing:qingjing2){
+            for(int p:peoples2){
+                int fire=0;
+                for (int pm:peopleMoves2){
+                    r3=new ResultSetEntity();
+                    resultSetEntity.setQingjing(qinjing);
+                    resultSetEntity.setPeoples(p);
+                    resultSetEntity.setFangxiang(pm);
+                    resultSetEntity.setHuozai(fireUpMoves2.get(fire));
+                    fire++;
+                    resultSetEntityList.add(r3);
+                }
+
+            }
+        }
+        // 选择情景
+        List<Integer> qingjing3= Arrays.asList(6,7);
+        Collections.shuffle(qingjing3);
+        //小人的数量
+        List<Integer> peoples3= Arrays.asList(1,2,3);
+        Collections.shuffle(peoples3);
+        Collections.shuffle(peopleMoves2);
+        for(int qinjing:qingjing3){
+            for(int p:peoples3){
+                int fire=0;
+                for (int pm:peopleMoves2){
+                    r3=new ResultSetEntity();
+                    resultSetEntity.setQingjing(qinjing);
+                    resultSetEntity.setPeoples(p);
+                    resultSetEntity.setFangxiang(pm);
+                    resultSetEntity.setHuozai(fireUpMoves2.get(fire));
+                    fire++;
+                    resultSetEntityList.add(r3);
+                }
+
+            }
+        }
+        // 选择情景
+        List<Integer> qingjing4= Arrays.asList(8,9);
+        Collections.shuffle(qingjing4);
+        //小人的数量
+        List<Integer> peoples4= Arrays.asList(1,2);
+        Collections.shuffle(peoples4);
+        for(int qinjing:qingjing4){
+            for(int p:peoples4){
+                int fire=0;
+                for (int pm:peopleMoves2){
+                    r3=new ResultSetEntity();
+                    resultSetEntity.setQingjing(qinjing);
+                    resultSetEntity.setPeoples(p);
+                    resultSetEntity.setFangxiang(pm);
+                    resultSetEntity.setHuozai(fireUpMoves2.get(fire));
+                    fire++;
+                    resultSetEntityList.add(r3);
+                }
+
+            }
+        }
+        // 选择情景
+        List<Integer> qingjing5= Arrays.asList(10,11);
+        Collections.shuffle(qingjing5);
+        //小人的数量
+        List<Integer> peoples5= Arrays.asList(1);
+        Collections.shuffle(peoples5);
+        for(int qinjing:qingjing5){
+            for(int p:peoples5){
+                int fire=0;
+                for (int pm:peopleMoves2){
+                    r3=new ResultSetEntity();
+                    resultSetEntity.setQingjing(qinjing);
+                    resultSetEntity.setPeoples(p);
+                    resultSetEntity.setFangxiang(pm);
+                    resultSetEntity.setHuozai(fireUpMoves2.get(fire));
+                    fire++;
+                    resultSetEntityList.add(r3);
+                }
+
+            }
+        }
+        Collections.shuffle(resultSetEntityList);
+        System.out.println("场景数量："+resultSetEntityList.size());
+        return resultSetEntityList;
+    }
+
     public void saveResult(SaveResultArg saveResultArg){
         System.out.println("saveResult:"+saveResultArg.toString());
         //获取当前对象的id值

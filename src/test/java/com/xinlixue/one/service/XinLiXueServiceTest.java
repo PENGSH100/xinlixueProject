@@ -24,6 +24,10 @@ public class XinLiXueServiceTest {
         xinLiXueService.getBackValue( );
     }
     @Test
+    public void getBackValueThree() {
+        xinLiXueService.getBackValueThree( );
+    }
+    @Test
     public void testSaveResult(){
         SaveResultArg saveResultArg=new SaveResultArg();
         saveResultArg.setAge(21);
