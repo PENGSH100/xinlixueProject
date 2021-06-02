@@ -22,6 +22,7 @@ public class XinLiXueServiceTest {
     @Test
     public void getBackValue() {
         xinLiXueService.getBackValue( );
+        xinLiXueService.writeResult2Txt("pengsh002");
     }
     @Test
     public void getBackValueThree() {

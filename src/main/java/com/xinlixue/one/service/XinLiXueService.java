@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.beans.IntrospectionException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -265,10 +267,10 @@ public class XinLiXueService {
                 int fire=0;
                 for (int pm:peopleMoves2){
                     r3=new ResultSetEntity();
-                    resultSetEntity.setQingjing(qinjing);
-                    resultSetEntity.setPeoples(p);
-                    resultSetEntity.setFangxiang(pm);
-                    resultSetEntity.setHuozai(fireUpMoves2.get(fire));
+                    r3.setQingjing(qinjing);
+                    r3.setPeoples(p);
+                    r3.setFangxiang(pm);
+                    r3.setHuozai(fireUpMoves2.get(fire));
                     fire++;
                     resultSetEntityList.add(r3);
                 }
@@ -287,10 +289,10 @@ public class XinLiXueService {
                 int fire=0;
                 for (int pm:peopleMoves2){
                     r3=new ResultSetEntity();
-                    resultSetEntity.setQingjing(qinjing);
-                    resultSetEntity.setPeoples(p);
-                    resultSetEntity.setFangxiang(pm);
-                    resultSetEntity.setHuozai(fireUpMoves2.get(fire));
+                    r3.setQingjing(qinjing);
+                    r3.setPeoples(p);
+                    r3.setFangxiang(pm);
+                    r3.setHuozai(fireUpMoves2.get(fire));
                     fire++;
                     resultSetEntityList.add(r3);
                 }
@@ -308,10 +310,10 @@ public class XinLiXueService {
                 int fire=0;
                 for (int pm:peopleMoves2){
                     r3=new ResultSetEntity();
-                    resultSetEntity.setQingjing(qinjing);
-                    resultSetEntity.setPeoples(p);
-                    resultSetEntity.setFangxiang(pm);
-                    resultSetEntity.setHuozai(fireUpMoves2.get(fire));
+                    r3.setQingjing(qinjing);
+                    r3.setPeoples(p);
+                    r3.setFangxiang(pm);
+                    r3.setHuozai(fireUpMoves2.get(fire));
                     fire++;
                     resultSetEntityList.add(r3);
                 }
@@ -329,10 +331,10 @@ public class XinLiXueService {
                 int fire=0;
                 for (int pm:peopleMoves2){
                     r3=new ResultSetEntity();
-                    resultSetEntity.setQingjing(qinjing);
-                    resultSetEntity.setPeoples(p);
-                    resultSetEntity.setFangxiang(pm);
-                    resultSetEntity.setHuozai(fireUpMoves2.get(fire));
+                    r3.setQingjing(qinjing);
+                    r3.setPeoples(p);
+                    r3.setFangxiang(pm);
+                    r3.setHuozai(fireUpMoves2.get(fire));
                     fire++;
                     resultSetEntityList.add(r3);
                 }
@@ -370,8 +372,6 @@ public class XinLiXueService {
         if(qingjing==1||qingjing==2||qingjing==7||qingjing==8){
             if(choose==fangxiang){//表示前面选择相同
                 consistently=1;
-            }else{//表示前面选择不同
-                consistently=2;
             }
         }
         //说明数据库里面是没有结果 第一次
@@ -404,6 +404,8 @@ public class XinLiXueService {
             //把结果存入数据库 做insert 操作
             xinLinXueMapper.saveResult(sub,age,Integer.valueOf(sex),times,choose,fangxiang,huozai,oldResult,qingjing,score,costTime,peoples,consistently);
         }
+
+
     }
 
     public Integer getTimesResult(String sub,Integer times){
@@ -413,6 +415,8 @@ public class XinLiXueService {
         if(times>=220){
             List<Integer> resuleList=Arrays.asList(120,121,122,123,124,125,126,127,128,129,130);
             Collections.shuffle(resuleList);
+            //当前的结果写入文件当中
+
            return resuleList.get(0);
         }
         Map resultMap=xinLinXueMapper.getTimesResultById(sub,times-1);
@@ -430,6 +434,35 @@ public class XinLiXueService {
         Integer sex=userEntityArg.getSex();
         int flag=xinLinXueMapper.login(sub,age,sex);
         System.out.println("用户注册成功："+sub);
+    }
+    public void writeResult2Txt(String sub){
+        try{
+            String path="/Users/pengshuai/Downloads/"+sub+".txt";
+            // 获取当前所有数据测试人员的所有数据
+            List<Map<String,Object>> resultMapList=xinLinXueMapper.getSaveResulAll(sub);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            boolean flag=true;
+            for (Map<String,Object> info :resultMapList) {
+                if(flag){
+                    writer.write(info.keySet().toString() + "\r\n");
+                }
+                StringBuffer sb=new StringBuffer();
+                String tep="";
+                for(Map.Entry<String,Object> entry:info.entrySet()){
+                    sb.append(entry.getValue()).append("\t");
+                }
+
+                writer.write(sb.toString() + "\r\n");
+                flag=false;
+            }
+            writer.flush();
+            writer.close();
+        }catch (Exception e){
+            System.out.println("写入文件出错："+sub);
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
 

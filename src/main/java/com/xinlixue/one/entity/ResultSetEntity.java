@@ -13,6 +13,7 @@ public class ResultSetEntity implements Serializable {
     private Integer peoples;
     private Integer fangxiang;
     private Integer huozai;
+    private Integer pingheng;
 
     public Integer getQingjing() {
         return qingjing;
@@ -46,6 +47,14 @@ public class ResultSetEntity implements Serializable {
         this.huozai = huozai;
     }
 
+    public Integer getPingheng() {
+        return pingheng;
+    }
+
+    public void setPingheng(Integer pingheng) {
+        this.pingheng = pingheng;
+    }
+
     @Override
     public String toString() {
         return "ResultSetEntity{" +
@@ -53,6 +62,7 @@ public class ResultSetEntity implements Serializable {
                 ", peoples=" + peoples +
                 ", fangxiang=" + fangxiang +
                 ", huozai=" + huozai +
+                ", pingheng=" + pingheng +
                 '}';
     }
 }

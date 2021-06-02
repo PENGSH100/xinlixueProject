@@ -64,4 +64,10 @@ public interface XinLinXueMapper{
               @Param("result") Integer result,
               @Param("sex") Integer sex,
               @Param("age") Integer age);
+
+
+
+    @Select("select * from user_result where sub=#{sub}")
+    List<Map<String,Object>> getSaveResulAll(@Param("sub") String sub);
+
 }

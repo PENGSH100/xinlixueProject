@@ -522,7 +522,11 @@ function OneA() {
 		});
 	});
 
-	function test(event) {
+	function test(e<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>${mysql.version}</version>
+    </dependency>vent) {
 		if (event.keyCode == 70 || event.keyCode == 74) {
 			$("#question").hide(0);
 			document.getElementById("body").removeEventListener("keyup", test);
