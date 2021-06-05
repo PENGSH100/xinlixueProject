@@ -18,14 +18,14 @@ import java.util.List;
  */
 @Service
 public class EffectInfoCacheLoader implements CacheLoader<String, CacheEntity> {
-@Autowired
-XinLiXueService xinLiXueService;
+    @Autowired
+    XinLiXue2BService xinLiXue2BService;
 
     @Nullable
     @Override
     public CacheEntity load(@NonNull String key) throws Exception {
         CacheEntity cacheEntity=new CacheEntity();
-        List<ResultSetEntity> resultSetEntityList=xinLiXueService.getBackValueThree();
+        List<ResultSetEntity> resultSetEntityList=xinLiXue2BService.getBackValue();
         cacheEntity.setKey(key);
         cacheEntity.setResultSetEntityList(resultSetEntityList);
         return cacheEntity;
